@@ -8,7 +8,8 @@ module.exports = {
       primary: '#3256a4',
       secondary: '#F0E319',
       dimGray: '#C2C2C2',
-      lightBlue: '#1B99E5'
+      lightBlue: '#1B99E5',
+      deepGray: '#393a3c',
     }
   },
   plugins: [

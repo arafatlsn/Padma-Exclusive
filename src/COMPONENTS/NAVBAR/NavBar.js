@@ -9,7 +9,7 @@ const NavBar = () => {
           <p className="text-[2.5rem] font-bold m-0 text-secondary">
             <i>Padma</i>
           </p>
-          <p className="text-[1.5rem] font-semibold mt-[-18px] ml-[30px] text-white">Exclusive</p>
+          <p className="text-[1.5rem] font-semibold mt-[-18px] ml-[31px] text-white">Exclusive</p>
         </div>
         <div>
           <Link className="text-xl font-bold mx-[1.5rem] text-white" to={"/"}>Home</Link>

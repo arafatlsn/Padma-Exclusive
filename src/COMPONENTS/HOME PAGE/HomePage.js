@@ -1,6 +1,7 @@
 import React from "react";
 import CarouselComp from "./CarouselComp";
 import FindTickets from "./FindTickets";
+import OurAdvantage from "./OurAdvantage";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <div>
         <FindTickets></FindTickets>
       </div>
+      <OurAdvantage></OurAdvantage>
     </div>
   );
 };

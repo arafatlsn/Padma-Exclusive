@@ -3,3 +3,8 @@
   background-repeat: no-repeat; 
   background-size: 100vw 100vh;
 }
+.carousel-scnd-prnt{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .3);
+}
