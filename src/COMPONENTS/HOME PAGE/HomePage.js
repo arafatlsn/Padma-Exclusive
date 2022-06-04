@@ -1,5 +1,6 @@
 import React from "react";
 import CarouselComp from "./CarouselComp";
+import Destinations from "./Destinations";
 import FindTickets from "./FindTickets";
 import OurAdvantage from "./OurAdvantage";
 
@@ -13,6 +14,7 @@ const HomePage = () => {
         <FindTickets></FindTickets>
       </div>
       <OurAdvantage></OurAdvantage>
+      <Destinations></Destinations>
     </div>
   );
 };

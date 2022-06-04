@@ -1,0 +1,44 @@
+[
+  {
+    "from": "Chandpur",
+    "to": "Dhaka",
+    "cost": 450,
+    "time": "5 hours",
+    "img": "https://www.daily-bangladesh.com/media/imgAll/2019September/en/1-1910031600.jpeg"
+  },
+  {
+    "from": "Haziganj",
+    "to": "Dhaka",
+    "cost": 400,
+    "time": "4 hours 30 mins",
+    "img": "https://www.touristplaces.com.bd/images/pp/6/p120655.jpg"
+  },
+  {
+    "from": "Comilla",
+    "to": "Dhaka",
+    "cost": 320,
+    "time": "3 hours 30 mins",
+    "img": "https://www.bdtradeinfo.com/public/assets/images/moinamati.jpg"
+  },
+  {
+    "from": "Dhaka",
+    "to": "Chandpur",
+    "cost": 450,
+    "time": "5 hours",
+    "img": "https://www.bproperty.com/blog/wp-content/uploads/Feature-Photo-7.jpg"
+  },
+  {
+    "from": "Kachpur",
+    "to": "Chandpur",
+    "cost": 400,
+    "time": "4 hours",
+    "img": "https://www.tbsnews.net/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/images/2022/05/24/meghna_bridge.jpg"
+  },
+  {
+    "from": "Meghna",
+    "to": "Chandpur",
+    "cost": 350,
+    "time": "3 hours 30 mins",
+    "img": "https://www.obayashi.co.jp/works/upload/img/2438_01.jpg"
+  }
+]
