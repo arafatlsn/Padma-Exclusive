@@ -1,10 +1,9 @@
-.carousel-prnt{
+.confirm-page-banner{
   background: url('../../../public/background2.jpg');
   background-repeat: no-repeat; 
   background-size: 100vw 100vh;
+  background-position-y: 40%
 }
-.carousel-scnd-prnt{
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, .3);
+.confirm-page-parent{
+  background-color: rgba(18, 46, 97, .5);
 }

@@ -5,8 +5,13 @@ import TravellingFrom from "./TravellingFrom";
 import DepartDate from "./DepartDate";
 import TicketType from "./TicketType";
 import { ToggleSwitch } from "flowbite-react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const FindTickets = () => {
+
+  const navigate = useNavigate()
+
   const today = new Date().toString();
   const dateArr = today.split(" ").slice(0, 4);
   const todayString = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`;
@@ -19,6 +24,16 @@ const FindTickets = () => {
   const [dropDownThree, setDropDownThree] = useState(false);
   const [dropDownFour, setDropDownFour] = useState(false);
   const [toggleStatus, setToggleStatus] = useState(false);
+
+  const findDestination = async() => {
+    const destination = { from: travelFrom, to: travellingTo }
+    const { data } = await axios.get(`http://localhost:5000/destination`, {
+      headers: {
+        destinationInfo: JSON.stringify(destination)
+      }
+    });
+    navigate(`/destinations/${data?._id}`)
+  }
 
   return (
     <div>
@@ -37,9 +52,11 @@ const FindTickets = () => {
                 setToggleStatus(!toggleStatus)
                 if(toggleStatus){
                   setTravelFrom('Chandpur')
+                  setTravellingTo('Dhaka')
                 }
                 else{
                   setTravelFrom('Dhaka')
+                  setTravellingTo('Chandpur')
                 }
               }}
               checked={toggleStatus}
@@ -48,7 +65,9 @@ const FindTickets = () => {
               {!toggleStatus ? "From Chandpur" : "From Dhaka"}
             </p>
           </div>
-          <button className="bg-secondary text-primary px-[1.5rem] py-[.3rem] text-[1.3rem] ml-[3rem] rounded-[.2rem] font-semibold">
+          <button
+          onClick={findDestination}
+          className="bg-secondary text-primary px-[1.5rem] py-[.3rem] text-[1.3rem] ml-[3rem] rounded-[.2rem] font-semibold">
             Find Ticket
           </button>
         </div>
@@ -84,14 +103,13 @@ const FindTickets = () => {
             <div>
             {!toggleStatus ? (
                 <button
-                  onClick={() => setTravellingTo("Dhaka")}
-                  className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+                  className="w-[240px] text-xl text-primary font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+                  disabled
                 >
                   Dhaka
                 </button>
               ) : (
                 <button
-                  onClick={() => setTravellingTo("Chandpur")}
                   className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
                 >
                   Chandpur

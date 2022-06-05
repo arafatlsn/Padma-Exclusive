@@ -13,7 +13,9 @@ const HomePage = () => {
       <div>
         <FindTickets></FindTickets>
       </div>
+      <div className="bg-white">
       <OurAdvantage></OurAdvantage>
+      </div>
       <Destinations></Destinations>
     </div>
   );
