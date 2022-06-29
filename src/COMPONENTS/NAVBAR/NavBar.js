@@ -14,7 +14,7 @@ const NavBar = () => {
         </div>
         <div>
           <Link className="text-xl font-bold mx-[1.5rem] text-white" to={"/"}>Home</Link>
-          <Link className="text-xl font-bold mx-[1.5rem] text-white" to={"/destinations/629b01d1fa433cce0f661e52"}>Destination</Link>
+          <Link className="text-xl font-bold mx-[1.5rem] text-white" to={"/destinations"}>Destination</Link>
           <Link className="text-xl font-bold mx-[1.5rem] text-white" to={"/"}>Bookings</Link>
           <Link className="text-xl font-bold mx-[1.5rem] text-white" to={"/"}>Ticket</Link>
           <Link className="text-xl font-bold mx-[1.5rem] text-white" to={"/"}>About</Link>

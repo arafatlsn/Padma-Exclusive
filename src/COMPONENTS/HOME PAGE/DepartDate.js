@@ -1,6 +1,7 @@
 import React from "react";
 
 const DepartDate = ({ setDepartDate }) => {
+  
   let day = new Date();
 
   let nextDay = new Date(day);
@@ -22,7 +23,7 @@ const DepartDate = ({ setDepartDate }) => {
 
 
   return (
-    <div className="absolute top-30">
+    <div className="absolute top-30 z-[100]">
       <button
         onClick={() => setDepartDate(`${todayArr[0]} ${todayArr[1]} ${todayArr[2]} ${todayArr[3]}`)}
         className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"

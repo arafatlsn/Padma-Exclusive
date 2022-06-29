@@ -1,41 +1,50 @@
-import "./FindTickets.css";
-import React, { useContext, useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
-import TravellingFrom from "./TravellingFrom";
-import DepartDate from "./DepartDate";
-import TicketType from "./TicketType";
-import { ToggleSwitch } from "flowbite-react";
 import axios from "axios";
+import { ToggleSwitch } from "flowbite-react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IoIosArrowDown } from "react-icons/io";
+import TravellingFrom from "../HOME PAGE/TravellingFrom";
+import DepartDate from "../HOME PAGE/DepartDate";
+import TicketType from "../HOME PAGE/TicketType";
+import SelectPassengersComp from "./SelectPassengersComp";
 import { TicketInfo } from "../../App";
 
-const FindTickets = () => {
+const FindBusTicketConfirm = ({
+  travelFrom,
+  setTravelFrom,
+  travelTo,
+  setTravelTo,
+  refetch,
+}) => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const { selectPassengers, setSelectPassengers } = useContext(TicketInfo);
 
-  const { travelFrom, setTravelFrom, travellingTo, setTravellingTo, departDate, setDepartDate, selectTicketType, setSelectTicketType } = useContext(TicketInfo);
+  const today = new Date().toString();
+  const dateArr = today.split(" ").slice(0, 4);
+  const todayString = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`;
+  const [departDate, setDepartDate] = useState(todayString);
+  const [selectTicketType, setSelectTicketType] = useState("One Way");
 
   const [dropDown, setDropDown] = useState(false);
   const [dropDownThree, setDropDownThree] = useState(false);
   const [dropDownFour, setDropDownFour] = useState(false);
+  const [dropDownFive, setDropDownFive] = useState(false);
+
   const [toggleStatus, setToggleStatus] = useState(false);
 
-  const findDestination = async() => {
-    const destination = { from: travelFrom, to: travellingTo }
+  const findDestination = async () => {
+    const destination = { from: travelFrom, to: travelTo };
     const { data } = await axios.get(`http://localhost:5000/destination`, {
       headers: {
-        destinationInfo: JSON.stringify(destination)
-      }
+        destinationInfo: JSON.stringify(destination),
+      },
     });
-    navigate(`/destinations/${data?._id}`)
-  }
-
+    navigate(`/destinations/${data?._id}`);
+  };
   return (
     <div>
-      <div
-        className="w-[70vw] mx-auto absolute left-0 right-0 bottom-0 z-40 px-[3rem] py-[1.2rem]"
-        style={{ background: "rgba(24, 55, 122, 0.8)" }}
-      >
+      <div className="w-[70vw] mx-auto mt-[3.5rem] px-[3rem] py-[2rem] bg-primary">
         <div className="flex items-center">
           <h1 className="text-[1.7rem] py-[1rem] text-white">
             Book Bus Ticket
@@ -44,14 +53,13 @@ const FindTickets = () => {
             <ToggleSwitch
               color="green"
               onClick={() => {
-                setToggleStatus(!toggleStatus)
-                if(toggleStatus){
-                  setTravelFrom('Chandpur')
-                  setTravellingTo('Dhaka')
-                }
-                else{
-                  setTravelFrom('Dhaka')
-                  setTravellingTo('Chandpur')
+                setToggleStatus(!toggleStatus);
+                if (toggleStatus) {
+                  setTravelFrom("Chandpur");
+                  setTravelTo("Dhaka");
+                } else {
+                  setTravelFrom("Dhaka");
+                  setTravelTo("Chandpur");
                 }
               }}
               checked={toggleStatus}
@@ -61,8 +69,9 @@ const FindTickets = () => {
             </p>
           </div>
           <button
-          onClick={findDestination}
-          className="bg-secondary text-primary px-[1.5rem] py-[.3rem] text-[1.3rem] ml-[3rem] rounded-[.2rem] font-semibold">
+            onClick={findDestination}
+            className="bg-secondary text-primary px-[1.5rem] py-[.3rem] text-[1.3rem] ml-[3rem] rounded-[.2rem] font-semibold"
+          >
             Find Ticket
           </button>
         </div>
@@ -96,7 +105,7 @@ const FindTickets = () => {
               Travelling To
             </label>
             <div>
-            {!toggleStatus ? (
+              {!toggleStatus ? (
                 <button
                   className="w-[240px] text-xl text-primary font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
                   disabled
@@ -104,9 +113,7 @@ const FindTickets = () => {
                   Dhaka
                 </button>
               ) : (
-                <button
-                  className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
-                >
+                <button className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between">
                   Chandpur
                 </button>
               )}
@@ -148,10 +155,45 @@ const FindTickets = () => {
               )}
             </div>
           </div>
+          {/* passegners tickets  */}
+          <div
+            className="mt-[1rem]"
+            onBlur={() => setTimeout(() => setDropDownFive(false), 150)}
+          >
+            <label htmlFor="travelling-to" className="text-[1.2rem] text-white">
+              Passengers
+            </label>
+            <div>
+              <button
+                onClick={() => setDropDownFive(true)}
+                className="w-[240px] text-xl text-primary font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+              >
+                {selectPassengers} <IoIosArrowDown />
+              </button>
+              {dropDownFive && (
+                <SelectPassengersComp
+                  setSelectPassengers={setSelectPassengers}
+                />
+              )}
+            </div>
+          </div>
+          {/* generate coupon  */}
+          <div className="mt-[1rem]">
+            <label htmlFor="travelling-to" className="text-[1.2rem] text-white">
+              Promo Code
+            </label>
+            <div>
+              <input
+                type={"text"}
+                className="w-[240px] text-xl text-primary font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+                placeholder="Generate Code"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default FindTickets;
+export default FindBusTicketConfirm;
