@@ -4,6 +4,7 @@ import HomePage from "./COMPONENTS/HOME PAGE/HomePage";
 import NavBar from "./COMPONENTS/NAVBAR/NavBar";
 import ConfirmTicketPage from "./COMPONENTS/CONFIRM TICKET PAGE/ConfirmTicketPage";
 import { createContext, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 export const TicketInfo = createContext();
 function App() {
@@ -42,6 +43,7 @@ function App() {
             element={<ConfirmTicketPage></ConfirmTicketPage>}
           ></Route>
         </Routes>
+        <Toaster/>
       </div>
     </TicketInfo.Provider>
   );

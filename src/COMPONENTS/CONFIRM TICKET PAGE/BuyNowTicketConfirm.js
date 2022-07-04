@@ -15,7 +15,7 @@ const BuyNowTicketConfirm = ({
   setPrice
 }) => {
   const { data: allTickets, isLoading } = useQuery("tickets", async () => {
-    const { data } = await axios.get("http://localhost:5000/tickets");
+    const { data } = await axios.get(`http://localhost:5000/tickets?date=${new Date().toDateString()}`);
     return data;
   });
 
