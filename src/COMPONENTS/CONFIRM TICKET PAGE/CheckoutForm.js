@@ -6,7 +6,14 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useEffect } from "react";
 
-const CheckoutForm = ({ cost, bookingTicket }) => {
+const CheckoutForm = ({
+  cost,
+  bookingTicket,
+  setShowModal,
+  setShowPayment,
+  reFetch,
+  setReFetch
+}) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -29,8 +36,8 @@ const CheckoutForm = ({ cost, bookingTicket }) => {
     e.preventDefault();
     const clientName = e?.target?.clientName?.value;
 
-    if(!clientName){
-      toast.error('Please give Your Name')
+    if (!clientName) {
+      toast.error("Please give Your Name");
       return;
     }
 
@@ -68,16 +75,21 @@ const CheckoutForm = ({ cost, bookingTicket }) => {
       } else {
         toast.success("SUCCEEDED! Thank you");
         bookingTicket(paymentIntent?.id);
+        setShowModal(false);
+        setShowPayment(false);
+        setReFetch(!reFetch)
       }
     }
   };
 
   return (
     <>
-    <div className="flex items-center gap-[1rem]">
-      <p className="uppercase font-bold text-gray-100 m-0">total cost:</p>
-      <h1 className="font-semibold text-[1.8rem] text-green-300">{cost} <span className="text-[1rem]">BDT </span></h1>
-    </div>
+      <div className="flex items-center gap-[1rem]">
+        <p className="uppercase font-bold text-gray-100 m-0">total cost:</p>
+        <h1 className="font-semibold text-[1.8rem] text-green-300">
+          {cost} <span className="text-[1rem]">BDT </span>
+        </h1>
+      </div>
       <form className="flex flex-col gap-[.5rem]" onSubmit={handleSubmit}>
         <div>
           <label
@@ -120,7 +132,7 @@ const CheckoutForm = ({ cost, bookingTicket }) => {
             className="rounded-sm w-[380px] px-[.2rem] py-[.5rem] bg-gray-300"
           />
         </div>
-        <div>
+        <div className="flex gap-[1rem] items-center">
           <button
             type="submit"
             className="text-primary bg-green-300 px-[.8rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-green-200 transition-all flex items-center gap-[.2rem] mt-[1rem]"
@@ -131,6 +143,15 @@ const CheckoutForm = ({ cost, bookingTicket }) => {
               <TbCurrencyTaka className="text-[1.5rem]" />
               {cost}
             </span>
+          </button>
+          <button
+            onClick={() => {
+              setShowModal(false);
+              setShowPayment(false);
+            }}
+            className="text-primary bg-red-300 px-[.8rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-red-200 transition-all flex items-center gap-[.2rem] mt-[1rem]"
+          >
+            Cancel
           </button>
         </div>
       </form>

@@ -12,18 +12,23 @@ import { TicketInfo } from "../../App";
 const FindBusTicketConfirm = ({
   travelFrom,
   setTravelFrom,
-  travelTo,
-  setTravelTo,
   refetch,
+  reFetch,
+  setReFetch,
 }) => {
   const navigate = useNavigate();
 
-  const { selectPassengers, setSelectPassengers } = useContext(TicketInfo);
+  const {
+    selectPassengers,
+    setSelectPassengers,
+    departDate,
+    setDepartDate,
+    setTravellingTo,
+  } = useContext(TicketInfo);
 
   const today = new Date().toString();
   const dateArr = today.split(" ").slice(0, 4);
   const todayString = `${dateArr[0]} ${dateArr[1]} ${dateArr[2]} ${dateArr[3]}`;
-  const [departDate, setDepartDate] = useState(todayString);
   const [selectTicketType, setSelectTicketType] = useState("One Way");
 
   const [dropDown, setDropDown] = useState(false);
@@ -33,15 +38,6 @@ const FindBusTicketConfirm = ({
 
   const [toggleStatus, setToggleStatus] = useState(false);
 
-  const findDestination = async () => {
-    const destination = { from: travelFrom, to: travelTo };
-    const { data } = await axios.get(`http://localhost:5000/destination`, {
-      headers: {
-        destinationInfo: JSON.stringify(destination),
-      },
-    });
-    navigate(`/destinations/${data?._id}`);
-  };
   return (
     <div>
       <div className="w-[70vw] mx-auto mt-[3.5rem] px-[3rem] py-[2rem] bg-primary">
@@ -56,10 +52,10 @@ const FindBusTicketConfirm = ({
                 setToggleStatus(!toggleStatus);
                 if (toggleStatus) {
                   setTravelFrom("Chandpur");
-                  setTravelTo("Dhaka");
+                  setTravellingTo("Dhaka");
                 } else {
                   setTravelFrom("Dhaka");
-                  setTravelTo("Chandpur");
+                  setTravellingTo("Chandpur");
                 }
               }}
               checked={toggleStatus}
@@ -69,7 +65,10 @@ const FindBusTicketConfirm = ({
             </p>
           </div>
           <button
-            onClick={findDestination}
+            onClick={() => {
+              setReFetch(!reFetch);
+              refetch();
+            }}
             className="bg-secondary text-primary px-[1.5rem] py-[.3rem] text-[1.3rem] ml-[3rem] rounded-[.2rem] font-semibold"
           >
             Find Ticket

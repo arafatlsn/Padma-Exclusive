@@ -1,8 +1,9 @@
 import { Table } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { FaMoneyBillWave } from "react-icons/fa";
+import { TicketInfo } from "../../App";
 
 const BuyNowTicketConfirm = ({
   singleDestionation,
@@ -12,16 +13,30 @@ const BuyNowTicketConfirm = ({
   setAvailableSeats,
   setDeparture,
   setArrival,
-  setPrice
+  setPrice,
+  reFetch,
 }) => {
-  const { data: allTickets, isLoading } = useQuery("tickets", async () => {
-    const { data } = await axios.get(`http://localhost:5000/tickets?date=${new Date().toDateString()}`);
+  const { departDate } = useContext(TicketInfo);
+  const {
+    data: allTickets,
+    isLoading,
+    refetch,
+  } = useQuery("tickets", async () => {
+    const { data } = await axios.get(
+      `http://localhost:5000/tickets?date=${departDate}`
+    );
     return data;
   });
+
+  useEffect(() => {
+    refetch();
+  }, [reFetch]);
 
   if (isLoading) {
     return;
   }
+
+  console.log(allTickets)
 
   return (
     <div className="w-[70%] mx-auto mt-[5rem] shadow-lg border-lg">

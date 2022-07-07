@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { TicketInfo } from "../../App";
 import BuyNowTicketConfirm from "./BuyNowTicketConfirm";
@@ -8,15 +8,21 @@ import ConfirmPageBanner from "./ConfirmPageBanner";
 import FindBusTicketConfirm from "./FindBusTicketConfirm";
 
 const ConfirmTicketPage = () => {
+
   const [travelTo, setTravelTo] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const { travelFrom, setTravelFrom, travellingTo, setTravellingTo, departDate, setDepartDate, selectTicketType, setSelectTicketType } = useContext(TicketInfo);
+  const { travelFrom, setTravelFrom, travellingTo, setLocation } = useContext(TicketInfo);
 
   const [availableSeats, setAvailableSeats] = useState([]);
   const [busId, setBusId] = useState('');
   const [departure, setDeparture] = useState('');
   const [arrival, setArrival] = useState('');
   const [price, setPrice] = useState('');
+  const [reFetch, setReFetch] = useState(false);
+
+  useEffect(() => {
+    setLocation('destination')
+  })
 
   const {
     data: singleDestionation,
@@ -52,6 +58,8 @@ const ConfirmTicketPage = () => {
         travelTo={travelTo}
         setTravelTo={setTravelTo}
         refetch={refetch}
+        reFetch={reFetch}
+        setReFetch={setReFetch}
       ></FindBusTicketConfirm>
       <BuyNowTicketConfirm
         singleDestionation={singleDestionation}
@@ -62,6 +70,7 @@ const ConfirmTicketPage = () => {
         showModal={showModal}
         setShowModal={setShowModal}
         setPrice={setPrice}
+        reFetch={reFetch}
       ></BuyNowTicketConfirm>
       <BuyTicketModal
         showModal={showModal}
@@ -72,6 +81,8 @@ const ConfirmTicketPage = () => {
         arrival={arrival}
         busId={busId}
         price={price}
+        reFetch={reFetch}
+        setReFetch={setReFetch}
       ></BuyTicketModal>
     </div>
   );

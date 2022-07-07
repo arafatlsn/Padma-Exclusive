@@ -21,6 +21,8 @@ const BuyTicketModal = ({
   arrival,
   busId,
   price,
+  reFetch,
+  setReFetch
 }) => {
   const { travelFrom, travellingTo, selectPassengers, departDate } =
     useContext(TicketInfo);
@@ -220,7 +222,7 @@ const BuyTicketModal = ({
                 ) : (
                   <div>
                     <Elements stripe={stripePromise}>
-                      <CheckoutForm cost={price * selectPassengers} bookingTicket={bookingTicket} />
+                      <CheckoutForm reFetch={reFetch} setReFetch={setReFetch} setShowModal={setShowModal} setShowPayment={setShowPayment} cost={price * selectPassengers} bookingTicket={bookingTicket} />
                     </Elements>
                   </div>
                 )}

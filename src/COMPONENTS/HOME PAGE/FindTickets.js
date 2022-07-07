@@ -27,7 +27,7 @@ const FindTickets = () => {
         destinationInfo: JSON.stringify(destination)
       }
     });
-    navigate(`/destinations/${data?._id}`)
+    navigate(`/destinations`)
   }
 
   return (
