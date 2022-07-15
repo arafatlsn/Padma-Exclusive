@@ -5,6 +5,7 @@ import { TbCurrencyTaka } from "react-icons/tb";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useEffect } from "react";
+import useAuthentication from "../Authentication Page/useAuthentication";
 
 const CheckoutForm = ({
   cost,
@@ -16,6 +17,7 @@ const CheckoutForm = ({
 }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useAuthentication();
 
   const [secretKey, setSecretKey] = useState("");
 
@@ -103,6 +105,7 @@ const CheckoutForm = ({
             className="text-[1.2rem] rounded-sm w-[380px] px-[.5rem] bg-gray-300 border-none font-semibold font-mono text-primary"
             name="clientName"
             id="clientName"
+            defaultValue={user?.displayName}
             type="text"
           />
         </div>

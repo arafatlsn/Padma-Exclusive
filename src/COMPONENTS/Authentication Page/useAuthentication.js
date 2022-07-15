@@ -1,4 +1,4 @@
-import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from './Firebase.init';
 
 const useAuthentication = () => {
@@ -15,12 +15,17 @@ const useAuthentication = () => {
     loadingCreateEmailPass,
     errorCreateEmailPass,
   ] = useCreateUserWithEmailAndPassword(auth);
+  // sign in with email pass 
+  const [
+    signInWithEmailAndPassword,
+    userSignEmailPass,
+    loadingSignEmailPass,
+    errorSignEmailPass,
+  ] = useSignInWithEmailAndPassword(auth);
   // update profile 
   const [updateProfile, updating, errorUpdateProfile] = useUpdateProfile(auth);
 
-
-  console.log(user)
-  return { signInWithGoogle, userGoogle, user, createUserWithEmailAndPassword, updateProfile }
+  return { signInWithGoogle, userGoogle, user, loading,  createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword }
 };
 
 export default useAuthentication;

@@ -26,7 +26,7 @@ const SignUp = () => {
 
     await createUserWithEmailAndPassword(userEmail, userPassword)
     await updateProfile({ displayName: userName })
-    // e.target.reset()
+    e.target.reset()
 
   }
 

@@ -1,0 +1,22 @@
+input:focus {
+  border-style: none;
+}
+
+.modal-main-container{
+  width: 100%;
+  height: 35vh;
+  background-color: white;
+}
+
+.modal-body-container-ticket {
+  width: 100%;
+  height: 30vh;
+  background-image: url("../../public/worldmap.jpg");
+  overflow: hidden;
+}
+
+.extra-div {
+  width: 100%;
+  height: 30vh;
+  background-color: rgba(18, 46, 97, 0.5);
+}

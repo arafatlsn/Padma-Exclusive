@@ -8,6 +8,8 @@ import { Toaster } from "react-hot-toast";
 import SingIn from "./COMPONENTS/Authentication Page/SingIn";
 import AuthPage from "./COMPONENTS/Authentication Page/AuthPage";
 import SignUp from "./COMPONENTS/Authentication Page/SignUp";
+import RequireAuth from "./COMPONENTS/Authentication Page/RequireAuth";
+import TicketComp from "./COMPONENTS/TicketComp";
 
 export const TicketInfo = createContext();
 function App() {
@@ -21,10 +23,10 @@ function App() {
   const [selectTicketType, setSelectTicketType] = useState("One Way");
   const [selectPassengers, setSelectPassengers] = useState(1);
 
-  const [authentication, setAuthentication] = useState('')
-  const [location, setLocation] = useState('');
+  const [authentication, setAuthentication] = useState("");
+  const [location, setLocation] = useState("");
 
-  console.log(location)
+  const [showTicket, setShowTicket] = useState(false);
 
   return (
     <TicketInfo.Provider
@@ -44,23 +46,30 @@ function App() {
         location,
         setLocation,
         authentication,
-        setAuthentication
+        setAuthentication,
+        showTicket,
+        setShowTicket,
       }}
     >
       <div style={{ fontFamily: "Josefin Sans" }}>
         <NavBar></NavBar>
+        {showTicket && <TicketComp></TicketComp>}
         <Routes>
           <Route path="/" element={<HomePage></HomePage>}></Route>
           <Route
             path="/destinations"
-            element={<ConfirmTicketPage></ConfirmTicketPage>}
+            element={
+              <RequireAuth>
+                <ConfirmTicketPage />
+              </RequireAuth>
+            }
           ></Route>
           <Route path="/authentication" element={<AuthPage></AuthPage>}>
             <Route index element={<SingIn></SingIn>}></Route>
             <Route path="signup" element={<SignUp></SignUp>}></Route>
           </Route>
         </Routes>
-        <Toaster/>
+        <Toaster />
       </div>
     </TicketInfo.Provider>
   );

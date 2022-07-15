@@ -1,67 +1,68 @@
-import { Modal } from "flowbite-react";
-import React, { useContext, useState } from "react";
-import { TicketInfo } from "../../App";
-import "./BuyTicketModal.css";
-import { SiFampay } from "react-icons/si";
-import { TbCurrencyTaka } from "react-icons/tb";
-import { loadStripe } from "@stripe/stripe-js";
-import CheckoutForm from "./CheckoutForm";
-import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
-import useAuthentication from "../Authentication Page/useAuthentication";
+import { Modal } from "flowbite-react";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { BiCloudDownload } from "react-icons/bi";
+import { TbCurrencyTaka } from "react-icons/tb";
+import { useQuery } from "react-query";
+import { useReactToPrint } from "react-to-print";
+import { TicketInfo } from "../App";
+import auth from "./Authentication Page/Firebase.init";
+import useAuthentication from "./Authentication Page/useAuthentication";
+import "./TicketComp.css";
 
-const stripePromise = loadStripe(`${process.env.REACT_APP_publishableKey}`);
-const BuyTicketModal = ({
-  showModal,
-  setShowModal,
-  availableSeats,
-  departure,
-  arrival,
-  busId,
-  price,
-  reFetch,
-  setReFetch,
-}) => {
-  const { travelFrom, travellingTo, selectPassengers, departDate } =
-    useContext(TicketInfo);
+const TicketComp = () => {
+  const [user] = useAuthState(auth);
+  const [ticket, setTicket] = useState({});
+  const { setShowTicket } = useContext(TicketInfo);
+  const componentRef = useRef();
 
-  const { user } = useAuthentication()
-  const [showPayment, setShowPayment] = useState(false);
-  const formSubmit = (e) => {
-    e.preventDefault();
-  };
+  if (user?.email) {
+    const func = async () => {
+      const { data } = await axios.get(
+        `http://localhost:5000/ticket?user=${user?.email}`
+      );
+      console.log(data)
+      setTicket(data);
+    };
+    func();
+  }
 
-  const bookingTicket = async (transactiontId) => {
-    const { data } = await axios.post("http://localhost:5000/bookTicket", {
-      travelFrom,
-      travellingTo,
-      selectPassengers: availableSeats.slice(0, selectPassengers),
-      departDate,
-      departure,
-      arrival,
-      busId,
-      cost: `${price * selectPassengers}`,
-      transactiontId,
-      user: user?.email
-    });
-  };
+  const {
+    travelFrom,
+    travellingTo,
+    selectPassengers,
+    busId,
+    departDate,
+    departure,
+    arrival,
+    cost,
+  } = ticket;
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current
+  })
 
   return (
     <React.Fragment>
-      <Modal show={showModal} onClose={() => setShowModal(!showModal)}>
-        <div className="modal-body-container shadow-xl">
-          <div className="extra-div">
-            <div className="flex gap-[.8rem]">
-              <div className="ticket-img-div">
-                <img
-                  className="h-[30vh] object-contain"
-                  src="ticketbus.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="mt-[.3rem]">
-                {!showPayment ? (
-                  <form onSubmit={formSubmit}>
+      <Modal show={true}>
+        <div className="modal-main-container">
+          <div className="h-[5vh] flex justify-center items-center gap-[.3rem]">
+            <button onClick={handlePrint} className="bg-green-300 w-[49%] h-[4vh] font-bold text-primary font-mono text-[1.1rem] flex justify-center items-center gap-[.2rem] rounded-sm"><BiCloudDownload className="text-[1.3rem]"/> Download</button>
+            <button onClick={() => setShowTicket(false)} className="bg-red-300 w-[49%] h-[4vh] font-bold text-primary font-mono text-[1.1rem] flex justify-center items-center gap-[.2rem] rounded-sm">Cancel</button>
+          </div>
+          <div ref={componentRef} className="modal-body-container-ticket">
+            <div className="extra-div">
+              <div className="flex gap-[.8rem]">
+                <div className="ticket-img-div">
+                  <img
+                    className="h-[30vh] object-contain"
+                    src="ticketbus.jpg"
+                    alt=""
+                  />
+                </div>
+                <div className="mt-[.3rem]">
+                  <form>
                     <div className="flex gap-[1.5rem]">
                       <div className="form-children-parent">
                         <div>
@@ -111,7 +112,7 @@ const BuyTicketModal = ({
                             name="to"
                             id="to"
                             type="text"
-                            value={availableSeats.slice(0, selectPassengers)}
+                            value={selectPassengers}
                             readOnly
                           />
                         </div>
@@ -204,43 +205,13 @@ const BuyTicketModal = ({
                           </span>{" "}
                           <span className="text-secondary font-semibold text-[1.3rem] flex items-center">
                             <TbCurrencyTaka className="text-white text-[1.8rem]" />{" "}
-                            {price * selectPassengers}
+                            {cost}
                           </span>
                         </p>
                       </div>
-                      <div className="flex gap-[1rem]">
-                        <button
-                          onClick={() => setShowPayment(true)}
-                          className="text-primary bg-green-300 px-[.8rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-green-200 transition-all flex items-center gap-[.2rem]"
-                        >
-                          <SiFampay /> Pay
-                        </button>
-                        <button
-                          onClick={() => {
-                            setShowModal(false);
-                            setShowPayment(false);
-                          }}
-                          className="text-primary bg-red-300 px-[1rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-red-200 transition-all"
-                        >
-                          Cancel
-                        </button>
-                      </div>
                     </div>
                   </form>
-                ) : (
-                  <div>
-                    <Elements stripe={stripePromise}>
-                      <CheckoutForm
-                        reFetch={reFetch}
-                        setReFetch={setReFetch}
-                        setShowModal={setShowModal}
-                        setShowPayment={setShowPayment}
-                        cost={price * selectPassengers}
-                        bookingTicket={bookingTicket}
-                      />
-                    </Elements>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
@@ -250,4 +221,4 @@ const BuyTicketModal = ({
   );
 };
 
-export default BuyTicketModal;
+export default TicketComp;

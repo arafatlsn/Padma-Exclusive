@@ -36,8 +36,6 @@ const BuyNowTicketConfirm = ({
     return;
   }
 
-  console.log(allTickets)
-
   return (
     <div className="w-[70%] mx-auto mt-[5rem] shadow-lg border-lg">
       <Table hoverable={true}>
