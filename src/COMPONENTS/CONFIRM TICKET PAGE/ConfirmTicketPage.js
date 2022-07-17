@@ -8,21 +8,21 @@ import ConfirmPageBanner from "./ConfirmPageBanner";
 import FindBusTicketConfirm from "./FindBusTicketConfirm";
 
 const ConfirmTicketPage = () => {
-
   const [travelTo, setTravelTo] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const { travelFrom, setTravelFrom, travellingTo, setLocation } = useContext(TicketInfo);
+  const { travelFrom, setTravelFrom, travellingTo, setLocation } =
+    useContext(TicketInfo);
 
   const [availableSeats, setAvailableSeats] = useState([]);
-  const [busId, setBusId] = useState('');
-  const [departure, setDeparture] = useState('');
-  const [arrival, setArrival] = useState('');
-  const [price, setPrice] = useState('');
+  const [busId, setBusId] = useState("");
+  const [departure, setDeparture] = useState("");
+  const [arrival, setArrival] = useState("");
+  const [price, setPrice] = useState("");
   const [reFetch, setReFetch] = useState(false);
 
   useEffect(() => {
-    setLocation('destination')
-  })
+    setLocation("destination");
+  });
 
   const {
     data: singleDestionation,
@@ -73,17 +73,17 @@ const ConfirmTicketPage = () => {
         reFetch={reFetch}
       ></BuyNowTicketConfirm>
       <BuyTicketModal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        singleDestionation={singleDestionation}
-        availableSeats={availableSeats}
-        departure={departure}
-        arrival={arrival}
-        busId={busId}
-        price={price}
-        reFetch={reFetch}
-        setReFetch={setReFetch}
-      ></BuyTicketModal>
+          showModal={showModal}
+          setShowModal={setShowModal}
+          singleDestionation={singleDestionation}
+          availableSeats={availableSeats}
+          departure={departure}
+          arrival={arrival}
+          busId={busId}
+          price={price}
+          reFetch={reFetch}
+          setReFetch={setReFetch}
+        ></BuyTicketModal>
     </div>
   );
 };

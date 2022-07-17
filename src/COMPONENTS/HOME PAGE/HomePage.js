@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { TicketInfo } from "../../App";
+import BusesLogo from "./BusesLogo";
 import CarouselComp from "./CarouselComp";
 import Destinations from "./Destinations";
 import FindTickets from "./FindTickets";
 import OurAdvantage from "./OurAdvantage";
+import SpecialService from "./SpecialService";
 
 const HomePage = () => {
   const { setLocation } = useContext(TicketInfo);
@@ -22,6 +24,8 @@ const HomePage = () => {
       <OurAdvantage></OurAdvantage>
       </div>
       <Destinations></Destinations>
+      <SpecialService></SpecialService>
+      <BusesLogo></BusesLogo>
     </div>
   );
 };

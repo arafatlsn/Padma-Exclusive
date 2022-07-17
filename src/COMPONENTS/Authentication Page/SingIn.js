@@ -4,7 +4,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineLock } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import "./SignIn.module.css";
+import './SignIn.css'
 import useAuthentication from "./useAuthentication";
 import { Link } from "react-router-dom";
 const SingIn = () => {

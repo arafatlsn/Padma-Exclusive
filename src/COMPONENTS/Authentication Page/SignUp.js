@@ -3,7 +3,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineLock } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
 import { MdDriveFileRenameOutline } from "react-icons/md";
-import "./SignIn.module.css";
+import "./SignIn.css";
 import useAuthentication from "./useAuthentication";
 import { Link } from "react-router-dom";
 import { TicketInfo } from "../../App";
@@ -20,9 +20,6 @@ const SignUp = () => {
     const userName = e.target.name.value;
     const userEmail = e.target.email.value;
     const userPassword = e.target.password.value;
-
-    console.log(userName, userEmail, userPassword)
-
 
     await createUserWithEmailAndPassword(userEmail, userPassword)
     await updateProfile({ displayName: userName })

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { TicketInfo } from "../../App";
-import "./SignIn.module.css";
+import "./SignIn.css";
 import image from '../../Assets/background2.jpg'
 
 const AuthPage = () => {

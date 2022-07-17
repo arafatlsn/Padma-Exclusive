@@ -1,5 +1,5 @@
 import { Modal } from "flowbite-react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TicketInfo } from "../../App";
 import "./BuyTicketModal.css";
 import { SiFampay } from "react-icons/si";
@@ -9,6 +9,7 @@ import CheckoutForm from "./CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import useAuthentication from "../Authentication Page/useAuthentication";
+import toast from "react-hot-toast";
 
 const stripePromise = loadStripe(`${process.env.REACT_APP_publishableKey}`);
 const BuyTicketModal = ({
@@ -25,7 +26,7 @@ const BuyTicketModal = ({
   const { travelFrom, travellingTo, selectPassengers, departDate } =
     useContext(TicketInfo);
 
-  const { user } = useAuthentication()
+  const { user } = useAuthentication();
   const [showPayment, setShowPayment] = useState(false);
   const formSubmit = (e) => {
     e.preventDefault();
@@ -46,9 +47,10 @@ const BuyTicketModal = ({
     });
   };
 
+
   return (
     <React.Fragment>
-      <Modal show={showModal} onClose={() => setShowModal(!showModal)}>
+      <Modal show={showModal}>
         <div className="modal-body-container shadow-xl">
           <div className="extra-div">
             <div className="flex gap-[.8rem]">

@@ -17,8 +17,11 @@ const Destinations = () => {
   }
 
   return (
-    <div className="bg-[#F2F6FF] py-[5rem]">
-      <h1 className="text-[2.7rem] pb-[2.5rem] font-bold text-center text-deepGray">Destinations</h1>
+    <div className="bg-[#F2F6FF] pt-[5rem] pb-[8rem]">
+      <h1 className="text-[2.7rem] pb-[1.5rem] font-bold text-center text-deepGray">Destinations</h1>
+      <div className='flex justify-center items-center mb-[3.5rem]'>
+        <p className='bg-primary h-[.3rem] w-[5rem] m-0'></p>
+      </div>
       <div className="w-[70%] mx-auto grid grid-cols-3 justify-center justify-items-center gap-[5rem]">
         {allDestinations.map((el) => (
           <DestinationCard key={el._id} el={el}></DestinationCard>
