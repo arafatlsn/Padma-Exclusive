@@ -11,6 +11,7 @@ import SignUp from "./COMPONENTS/Authentication Page/SignUp";
 import RequireAuth from "./COMPONENTS/Authentication Page/RequireAuth";
 import TicketComp from "./COMPONENTS/TicketComp";
 import FooterComp from "./COMPONENTS/Footer/FooterComp";
+import 'animate.css';
 
 export const TicketInfo = createContext();
 function App() {
@@ -28,6 +29,7 @@ function App() {
   const [location, setLocation] = useState("");
 
   const [showTicket, setShowTicket] = useState(false);
+
 
   return (
     <TicketInfo.Provider

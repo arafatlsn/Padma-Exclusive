@@ -22,7 +22,7 @@ const Destinations = () => {
       <div className='flex justify-center items-center mb-[3.5rem]'>
         <p className='bg-primary h-[.3rem] w-[5rem] m-0'></p>
       </div>
-      <div className="w-[70%] mx-auto grid grid-cols-3 justify-center justify-items-center gap-[5rem]">
+      <div className="w-[70%] mx-auto grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-[5rem]">
         {allDestinations.map((el) => (
           <DestinationCard key={el._id} el={el}></DestinationCard>
         ))}

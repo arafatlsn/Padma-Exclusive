@@ -8,7 +8,7 @@ const SpecialService = () => {
       <div className="special-service-extra-div">
         <div className="flex justify-center items-center h-[45vh]">
           <div>
-            <h1 className="text-[3.5rem] text-white font-bold ">
+            <h1 className="text-[1.5rem] lg:text-[3.5rem] text-center text-white font-bold ">
               Special Service: Bus Rental with Driver
             </h1>
             <div className="flex justify-center">

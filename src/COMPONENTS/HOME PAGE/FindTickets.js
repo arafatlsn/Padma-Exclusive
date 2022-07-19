@@ -31,7 +31,7 @@ const FindTickets = () => {
   }
 
   return (
-    <div>
+    <div className="lg:block hidden">
       <div
         className="w-[70vw] mx-auto absolute left-0 right-0 bottom-0 z-40 px-[3rem] py-[1.2rem]"
         style={{ background: "rgba(24, 55, 122, 0.8)" }}
