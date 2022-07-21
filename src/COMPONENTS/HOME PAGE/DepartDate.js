@@ -23,34 +23,34 @@ const DepartDate = ({ setDepartDate }) => {
 
 
   return (
-    <div className="absolute top-30 z-[100]">
+    <div className="w-[48.5%] absolute top-30 z-[100]">
       <button
         onClick={() => setDepartDate(`${todayArr[0]} ${todayArr[1]} ${todayArr[2]} ${todayArr[3]}`)}
-        className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+        className="w-[100%] lg:w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
       >
         {`${todayArr[0]} ${todayArr[1]} ${todayArr[2]} ${todayArr[3]}`}
       </button>
       <button
         onClick={() => setDepartDate(`${nextDateArr[0]} ${nextDateArr[1]} ${nextDateArr[2]} ${nextDateArr[3]}`)}
-        className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+        className="w-[100%] lg:w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
       >
         {`${nextDateArr[0]} ${nextDateArr[1]} ${nextDateArr[2]} ${nextDateArr[3]}`}
       </button>
       <button
         onClick={() => setDepartDate(`${thirdDayArr[0]} ${thirdDayArr[1]} ${thirdDayArr[2]} ${thirdDayArr[3]}`)}
-        className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+        className="w-[100%] lg:w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
       >
         {`${thirdDayArr[0]} ${thirdDayArr[1]} ${thirdDayArr[2]} ${thirdDayArr[3]}`}
       </button>
       <button
         onClick={() => setDepartDate(`${fourthDayArr[0]} ${fourthDayArr[1]} ${fourthDayArr[2]} ${fourthDayArr[3]}`)}
-        className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+        className="w-[100%] lg:w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
       >
         {`${fourthDayArr[0]} ${fourthDayArr[1]} ${fourthDayArr[2]} ${fourthDayArr[3]}`}
       </button>
       <button
         onClick={() => setDepartDate(`${fifthDayArr[0]} ${fifthDayArr[1]} ${fifthDayArr[2]} ${fifthDayArr[3]}`)}
-        className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
+        className="w-[100%] lg:w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
       >
         {`${fifthDayArr[0]} ${fifthDayArr[1]} ${fifthDayArr[2]} ${fifthDayArr[3]}`}
       </button>

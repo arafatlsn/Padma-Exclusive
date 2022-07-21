@@ -32,7 +32,7 @@ const ConfirmTicketPage = () => {
     const from = travelFrom;
     const to = travellingTo;
     const { data } = await axios.get(
-      `http://localhost:5000/destinationid?destinationDistance=${
+      `https://infinite-cliffs-95793.herokuapp.com/destinationid?destinationDistance=${
         from + "_" + to
       }`
     );
@@ -72,7 +72,8 @@ const ConfirmTicketPage = () => {
         setPrice={setPrice}
         reFetch={reFetch}
       ></BuyNowTicketConfirm>
-      <BuyTicketModal
+      {showModal && (
+        <BuyTicketModal
           showModal={showModal}
           setShowModal={setShowModal}
           singleDestionation={singleDestionation}
@@ -84,6 +85,7 @@ const ConfirmTicketPage = () => {
           reFetch={reFetch}
           setReFetch={setReFetch}
         ></BuyTicketModal>
+      )}
     </div>
   );
 };

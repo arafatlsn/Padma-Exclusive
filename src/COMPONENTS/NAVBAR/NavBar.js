@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import { TicketInfo } from "../../App";
 import { HiMenu } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
-import { Drawer, Box, Typography } from "@mui/material";
+import { Drawer, Box, Badge } from "@mui/material";
+import useAuthentication from "../Authentication Page/useAuthentication";
+import { signOut } from "firebase/auth";
+import auth from "../Authentication Page/Firebase.init";
 
 const NavBar = () => {
-  const { location, showTicket, setShowTicket } = useContext(TicketInfo);
+  const { location, showTicket, setShowTicket, falseTicket } =
+    useContext(TicketInfo);
   const [showNav, setShowNav] = useState(false);
+  const { user } = useAuthentication();
 
   window.addEventListener("scroll", () => {
     const catchNav = document.querySelector("#nav-container");
@@ -45,7 +50,6 @@ const NavBar = () => {
     const menuItems = document.querySelector("#menuList");
     setShowNav(!showNav);
     if (showNav) {
-      console.log("hello");
       menuItems.classList.add("hello world");
     } else {
       menuItems.classList.remove("hello world");
@@ -57,10 +61,10 @@ const NavBar = () => {
       <div
         id="nav-container"
         className={`absolute top-0 left-0 right-0 z-50 ${
-          location === "signin" && "bg-[#3256A4] shadow-lg relative"
+          location === "signin" && "bg-[#3256A4] shadow-lg  relative"
         }`}
       >
-        <header className="lg:w-[70%] mx-auto py-[.3rem] flex flex-col lg:flex-row items-center justify-items-start">
+        <header className="lg:w-[70%] mx-auto lg:py-[.3rem] flex flex-col lg:flex-row items-center justify-items-start">
           <div
             onClick={() => setShowNav(!showNav)}
             className="absolute lg:hidden left-1 top-[1.4rem]"
@@ -97,7 +101,9 @@ const NavBar = () => {
               Bookings
             </Link>
             <button
-              onClick={() => setShowTicket(!showTicket)}
+              onClick={() => {
+                setShowTicket(!showTicket);
+              }}
               className="text-xl font-bold mx-[1rem] text-white"
             >
               Ticket
@@ -105,48 +111,62 @@ const NavBar = () => {
             <Link className="text-xl font-bold mx-[1rem] text-white" to={"/"}>
               About
             </Link>
-            <Link
-              className="text-xl font-bold mx-[1rem] text-white"
-              to={"/authentication"}
-            >
-              SignIn
-            </Link>
+            {!user?.email ? (
+              <Link
+                className="text-xl font-bold mx-[1rem] text-white"
+                to={"/authentication"}
+              >
+                SignIn
+              </Link>
+            ) : (
+              <Link
+                onClick={() => {
+                  signOut(auth);
+                }}
+                className="text-xl font-bold mx-[1rem] text-white"
+                to={"/authentication"}
+              >
+                SignOut
+              </Link>
+            )}
           </div>
           <Drawer open={showNav} anchor="top">
             {/* h-[100vh] w-[100vw] bg-[#3256A4] */}
-            <Box width="100vw" height={"100vh"} className="bg-[#3256A4] animate__animated animate__fadeInDownBig ">
+            <Box
+              width="100vw"
+              height={"100vh"}
+              className="bg-[#3256A4] animate__animated animate__fadeInDownBig "
+            >
               <div className="flex flex-col items-center">
                 <div className="lg:w-[28%] mt-[.7rem]">
                   <p className="text-[2.3rem] font-bold m-0 text-secondary">
                     <i>Padma</i>
-                    <span className="text-white ml-[.5rem] font-semibold">Exclusive</span>
+                    <span className="text-white ml-[.5rem] font-semibold">
+                      Exclusive
+                    </span>
                   </p>
                 </div>
-                <div
-                  onClick={() => setShowNav(!showNav)}
-                >
+                <div onClick={() => setShowNav(!showNav)}>
                   <MdClose className="bg-black text-primary absolute bottom-[1rem] right-[1rem] text-[2.6rem] rounded-sm border-gray-800 border-[3px]" />
                 </div>
               </div>
-              <div
-                className="h-[75%] flex flex-col items-center justify-evenly"
-              >
+              <div className="h-[75%] flex flex-col items-center justify-evenly">
                 <Link
-                onClick={() => setShowNav(!showNav)}
+                  onClick={() => setShowNav(!showNav)}
                   className="text-3xl font-bold mr-[1rem] text-white"
                   to={"/"}
                 >
                   Home
                 </Link>
                 <Link
-                onClick={() => setShowNav(!showNav)}
+                  onClick={() => setShowNav(!showNav)}
                   className="text-3xl font-bold mx-[1rem] text-white"
                   to={"/destinations"}
                 >
                   Destination
                 </Link>
                 <Link
-                onClick={() => setShowNav(!showNav)}
+                  onClick={() => setShowNav(!showNav)}
                   className="text-3xl font-bold mx-[1rem] text-white"
                   to={"/"}
                 >
@@ -154,27 +174,40 @@ const NavBar = () => {
                 </Link>
                 <button
                   onClick={() => {
-                    setShowNav(!showNav)
-                    setShowTicket(!showTicket)
+                    setShowNav(!showNav);
+                    setShowTicket(!showTicket);
                   }}
                   className="text-3xl font-bold mx-[1rem] text-white"
                 >
                   Ticket
                 </button>
                 <Link
-                onClick={() => setShowNav(!showNav)}
+                  onClick={() => setShowNav(!showNav)}
                   className="text-3xl font-bold mx-[1rem] text-white"
                   to={"/"}
                 >
                   About
                 </Link>
-                <Link
-                onClick={() => setShowNav(!showNav)}
-                  className="text-3xl font-bold mx-[1rem] text-white"
-                  to={"/authentication"}
-                >
-                  SignIn
-                </Link>
+                {!user?.email ? (
+                  <Link
+                    onClick={() => setShowNav(!showNav)}
+                    className="text-3xl font-bold mx-[1rem] text-white"
+                    to={"/authentication"}
+                  >
+                    SignIn
+                  </Link>
+                ) : (
+                  <Link
+                    onClick={() => {
+                      setShowNav(!showNav);
+                      signOut(auth);
+                    }}
+                    className="text-3xl font-bold mx-[1rem] text-white"
+                    to={"/authentication"}
+                  >
+                    SignOut
+                  </Link>
+                )}
               </div>
             </Box>
           </Drawer>

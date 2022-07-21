@@ -13,7 +13,7 @@ const CheckoutForm = ({
   setShowModal,
   setShowPayment,
   reFetch,
-  setReFetch
+  setReFetch,
 }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -23,10 +23,12 @@ const CheckoutForm = ({
 
   useEffect(() => {
     const func = async () => {
-      console.log(cost);
-      const { data } = await axios.post("http://localhost:5000/paymentIntent", {
-        cost,
-      });
+      const { data } = await axios.post(
+        "https://infinite-cliffs-95793.herokuapp.com/paymentIntent",
+        {
+          cost,
+        }
+      );
       if (data.clientSecret) {
         setSecretKey(data.clientSecret);
       }
@@ -79,7 +81,7 @@ const CheckoutForm = ({
         bookingTicket(paymentIntent?.id);
         setShowModal(false);
         setShowPayment(false);
-        setReFetch(!reFetch)
+        setReFetch(!reFetch);
       }
     }
   };
@@ -87,15 +89,15 @@ const CheckoutForm = ({
   return (
     <>
       <div className="flex items-center gap-[1rem]">
-        <p className="uppercase font-bold text-gray-100 m-0">total cost:</p>
-        <h1 className="font-semibold text-[1.8rem] text-green-300">
+        <p className="uppercase font-bold text-primary m-0">total cost:</p>
+        <h1 className="font-semibold text-[1.8rem] text-green-700">
           {cost} <span className="text-[1rem]">BDT </span>
         </h1>
       </div>
       <form className="flex flex-col gap-[.5rem]" onSubmit={handleSubmit}>
         <div>
           <label
-            className="font-mono text-[1.1rem] text-gray-100 uppercase shadow-xl"
+            className="font-mono text-[1.1rem] text-primary uppercase shadow-xl"
             htmlFor="clientName"
           >
             Your Name
@@ -111,7 +113,7 @@ const CheckoutForm = ({
         </div>
         <div>
           <label
-            className="font-mono text-[1.1rem] text-gray-100 uppercase shadow-xl"
+            className="font-mono text-[1.1rem] text-primary uppercase shadow-xl"
             htmlFor="payment-method"
           >
             Payment Method

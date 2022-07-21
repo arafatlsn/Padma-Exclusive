@@ -12,13 +12,12 @@ import { TicketInfo } from "../../App";
 
 const FooterComp = () => {
   const { location } = useContext(TicketInfo);
-  console.log(location);
   return (
     <div className={`${location === 'signin' && 'hidden'}`}>
       <Footer className={`flex flex-col rounded-[0%]`}>
         <div className="grid w-full sm:flex sm:justify-between md:flex md:grid-cols-1 lg:flex justify-center">
           <div className="mx-auto">
-            <div className="mx-auto">
+            <div className="mx-auto mb-[1rem] lg:mb-0">
               <p className="text-[2.5rem] font-bold m-0 text-secondary">
                 <i>Padma</i>
               </p>

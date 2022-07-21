@@ -27,7 +27,7 @@ const BuyNowTicketConfirm = ({
     refetch,
   } = useQuery("tickets", async () => {
     const { data } = await axios.get(
-      `http://localhost:5000/tickets?date=${departDate}`
+      `https://infinite-cliffs-95793.herokuapp.com/tickets?date=${departDate}`
     );
     return data;
   });
@@ -45,7 +45,7 @@ const BuyNowTicketConfirm = ({
   ) => {
     const func = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/ticket?user=${user?.email}`
+        `https://infinite-cliffs-95793.herokuapp.com/ticket?user=${user?.email}`
       );
       if (data?.departDate) {
         const dateString = data.departDate?.split(" ");
@@ -80,7 +80,6 @@ const BuyNowTicketConfirm = ({
         const departTime = new Date(newDateString).getTime();
 
         const isAnyTicket = departTime - today;
-        console.log(isAnyTicket);
         if (isAnyTicket > 0) {
           toast.error("You have an unchecked Ticket");
         } else {
@@ -145,8 +144,8 @@ const BuyNowTicketConfirm = ({
   }
 
   return (
-    <div className="bg-[#F2F6FF] mt-[4rem] pt-[1rem] pb-[8rem]">
-      <div className="w-[70%] mx-auto mt-[5rem] shadow-lg border-lg">
+    <div className="bg-[#F2F6FF] mt-[4rem] pt-[.5rem] pb-[8rem]">
+      <div className="lg:w-[70%] mx-auto mt-[5rem] shadow-lg border-lg">
         <Table hoverable={true}>
           <Table.Head>
             <Table.HeadCell>Departure</Table.HeadCell>
@@ -177,7 +176,7 @@ const BuyNowTicketConfirm = ({
                         singleDestionation?.cost
                       );
                     }}
-                    className="bg-secondary text-primary hover:bg-primary hover:text-white transition-all duration-[.2s] ease-linear font-semibold px-[1rem] py-[.5rem] text-[1.1rem] rounded-md flex gap-[.2rem]"
+                    className="bg-secondary text-primary hover:bg-primary hover:text-white transition-all duration-[.2s] ease-linear font-semibold px-[1rem] py-[.5rem] text-[1.1rem] rounded-md flex gap-[.2rem] whitespace-nowrap"
                   >
                     <FaMoneyBillWave className="text-[1.1rem]" />
                     <p className="m-0">Book Now</p>

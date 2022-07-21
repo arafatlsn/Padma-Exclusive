@@ -33,12 +33,12 @@ const AuthPage = () => {
         <div className="shadow-md shadow-gray-900">
           <div className="relative">
             <img
-              className="lg:w-[40vw] lg:h-[30vh] object-cover object-center"
+              className="w-[100vw] lg:w-[40vw] h-[30vh] object-cover object-center"
               src={image}
               alt=""
             />
             <div
-              className="lg:w-[40vw] lg:h-[30vh] absolute top-0 flex justify-center items-center"
+              className="w-[100vw] lg:w-[40vw] h-[30vh] absolute top-0 flex justify-center items-center"
               style={{ background: "rgba(50, 86, 164, .7)" }}
             >
               <div>

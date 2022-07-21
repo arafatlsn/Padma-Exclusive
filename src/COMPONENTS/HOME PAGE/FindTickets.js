@@ -10,25 +10,36 @@ import { useNavigate } from "react-router-dom";
 import { TicketInfo } from "../../App";
 
 const FindTickets = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const { travelFrom, setTravelFrom, travellingTo, setTravellingTo, departDate, setDepartDate, selectTicketType, setSelectTicketType } = useContext(TicketInfo);
+  const {
+    travelFrom,
+    setTravelFrom,
+    travellingTo,
+    setTravellingTo,
+    departDate,
+    setDepartDate,
+    selectTicketType,
+    setSelectTicketType,
+  } = useContext(TicketInfo);
 
   const [dropDown, setDropDown] = useState(false);
   const [dropDownThree, setDropDownThree] = useState(false);
   const [dropDownFour, setDropDownFour] = useState(false);
   const [toggleStatus, setToggleStatus] = useState(false);
 
-  const findDestination = async() => {
-    const destination = { from: travelFrom, to: travellingTo }
-    const { data } = await axios.get(`http://localhost:5000/destination`, {
-      headers: {
-        destinationInfo: JSON.stringify(destination)
+  const findDestination = async () => {
+    const destination = { from: travelFrom, to: travellingTo };
+    const { data } = await axios.get(
+      `https://infinite-cliffs-95793.herokuapp.com/destination`,
+      {
+        headers: {
+          destinationInfo: JSON.stringify(destination),
+        },
       }
-    });
-    navigate(`/destinations`)
-  }
+    );
+    navigate(`/destinations`);
+  };
 
   return (
     <div className="lg:block hidden">
@@ -44,14 +55,13 @@ const FindTickets = () => {
             <ToggleSwitch
               color="green"
               onClick={() => {
-                setToggleStatus(!toggleStatus)
-                if(toggleStatus){
-                  setTravelFrom('Chandpur')
-                  setTravellingTo('Dhaka')
-                }
-                else{
-                  setTravelFrom('Dhaka')
-                  setTravellingTo('Chandpur')
+                setToggleStatus(!toggleStatus);
+                if (toggleStatus) {
+                  setTravelFrom("Chandpur");
+                  setTravellingTo("Dhaka");
+                } else {
+                  setTravelFrom("Dhaka");
+                  setTravellingTo("Chandpur");
                 }
               }}
               checked={toggleStatus}
@@ -61,8 +71,9 @@ const FindTickets = () => {
             </p>
           </div>
           <button
-          onClick={findDestination}
-          className="bg-secondary text-primary px-[1.5rem] py-[.3rem] text-[1.3rem] ml-[3rem] rounded-[.2rem] font-semibold">
+            onClick={findDestination}
+            className="bg-secondary text-primary px-[1.5rem] py-[.3rem] text-[1.3rem] ml-[3rem] rounded-[.2rem] font-semibold"
+          >
             Find Ticket
           </button>
         </div>
@@ -96,7 +107,7 @@ const FindTickets = () => {
               Travelling To
             </label>
             <div>
-            {!toggleStatus ? (
+              {!toggleStatus ? (
                 <button
                   className="w-[240px] text-xl text-primary font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
                   disabled
@@ -104,9 +115,7 @@ const FindTickets = () => {
                   Dhaka
                 </button>
               ) : (
-                <button
-                  className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between"
-                >
+                <button className="w-[240px] text-xl text-primary hover:bg-primary hover:text-white font-bold text-left px-[1rem] py-[.5rem] border bg-white flex items-center justify-between">
                   Chandpur
                 </button>
               )}

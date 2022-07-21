@@ -29,6 +29,7 @@ function App() {
   const [location, setLocation] = useState("");
 
   const [showTicket, setShowTicket] = useState(false);
+  const [falseTicket, setFalsyTicket] = useState(false);
 
 
   return (
@@ -52,6 +53,7 @@ function App() {
         setAuthentication,
         showTicket,
         setShowTicket,
+        
       }}
     >
       <div style={{ fontFamily: "Josefin Sans" }}>

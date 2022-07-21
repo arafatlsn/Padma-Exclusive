@@ -10,6 +10,7 @@ import { useReactToPrint } from "react-to-print";
 import { TicketInfo } from "../App";
 import auth from "./Authentication Page/Firebase.init";
 import useAuthentication from "./Authentication Page/useAuthentication";
+import ticketImg from "../Assets/ticketImg.jpg";
 import "./TicketComp.css";
 
 const TicketComp = ({ showTicket }) => {
@@ -38,7 +39,7 @@ const TicketComp = ({ showTicket }) => {
     let refresh = false;
     const func = async () => {
       const { data } = await axios.get(
-        `http://localhost:5000/ticket?user=${user?.email}`
+        `https://infinite-cliffs-95793.herokuapp.com/ticket?user=${user?.email}`
       );
       if (data.departDate) {
         const dateString = data.departDate.split(" ");
@@ -80,50 +81,34 @@ const TicketComp = ({ showTicket }) => {
           toast.error("You have no upcoming ticket");
           setFalsyTicket(false);
         }
-      }
-      else{
-        toast.error('You have no ticket')
+      } else {
+        toast.error("You have no ticket");
       }
     };
     func();
   }, [showTicket]);
 
   return (
-    <React.Fragment>
+    <>
       {falseTicket && (
-        <Modal show={true}>
-          <div className="modal-main-container">
-            <div className="h-[5vh] flex justify-center items-center gap-[.3rem]">
-              <button
-                onClick={handlePrint}
-                className="bg-green-300 w-[49%] h-[4vh] font-bold text-primary font-mono text-[1.1rem] flex justify-center items-center gap-[.2rem] rounded-sm"
-              >
-                <BiCloudDownload className="text-[1.3rem]" /> Download
-              </button>
-              <button
-                onClick={() => setShowTicket(false)}
-                className="bg-red-300 w-[49%] h-[4vh] font-bold text-primary font-mono text-[1.1rem] flex justify-center items-center gap-[.2rem] rounded-sm"
-              >
-                Cancel
-              </button>
+        <div className="h-0 sticky top-[50%] z-[100] flex justify-center items-center">
+          <div className="animate__animated animate__backInDown">
+            <div className="modal-title text-green-700 font-bold  bg-green-300 p-[.3rem]">
+              <h1 className="flex text-[1.3rem]">Download Your Ticket</h1>
             </div>
-            <div ref={componentRef} className="modal-body-container-ticket">
-              <div className="extra-div">
-                <div className="flex gap-[.8rem]">
-                  <div className="ticket-img-div">
-                    <img
-                      className="h-[30vh] object-contain"
-                      src="ticketbus.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="mt-[.3rem]">
+            <div ref={componentRef} className="flex lg:flex-row bg-[#CBECCF]">
+              <div>
+                <img src={ticketImg} alt="" />
+              </div>
+              <div>
+                <div ref={componentRef}>
+                  <div>
                     <form>
-                      <div className="flex gap-[1.5rem]">
+                      <div className="flex gap-[1.5rem] pl-[.3rem] pr-[.5rem]">
                         <div className="form-children-parent">
                           <div>
                             <label
-                              className="font-mono text-[1.1rem] text-gray-100 uppercase"
+                              className="font-mono text-[1.1rem] text-primary font-[600] uppercase"
                               htmlFor="from"
                             >
                               From
@@ -140,7 +125,7 @@ const TicketComp = ({ showTicket }) => {
                           </div>
                           <div>
                             <label
-                              className="font-mono text-[1.1rem] text-gray-100 uppercase"
+                              className="font-mono text-[1.1rem] text-primary font-[600] uppercase"
                               htmlFor="to"
                             >
                               To
@@ -157,7 +142,7 @@ const TicketComp = ({ showTicket }) => {
                           </div>
                           <div>
                             <label
-                              className="font-mono text-[1.1rem] text-gray-100 uppercase"
+                              className="font-mono text-[1.1rem] text-primary font-[600] uppercase"
                               htmlFor="to"
                             >
                               Seats
@@ -175,7 +160,7 @@ const TicketComp = ({ showTicket }) => {
 
                           <div>
                             <label
-                              className="font-mono text-[1.1rem] text-gray-100 uppercase"
+                              className="font-mono text-[1.1rem] text-primary font-[600] uppercase"
                               htmlFor="from"
                             >
                               Bus id
@@ -194,7 +179,7 @@ const TicketComp = ({ showTicket }) => {
                         <div>
                           <div>
                             <label
-                              className="font-mono text-[1.1rem] text-gray-100 uppercase"
+                              className="font-mono text-[1.1rem] text-primary font-[600] uppercase"
                               htmlFor="from"
                             >
                               Date
@@ -211,7 +196,7 @@ const TicketComp = ({ showTicket }) => {
                           </div>
                           <div>
                             <label
-                              className="font-mono text-[1.1rem] text-gray-100 uppercase"
+                              className="font-mono text-[1.1rem] text-primary font-[600] uppercase"
                               htmlFor="from"
                             >
                               Departure
@@ -228,7 +213,7 @@ const TicketComp = ({ showTicket }) => {
                           </div>
                           <div>
                             <label
-                              className="font-mono text-[1.1rem] text-gray-100 uppercase"
+                              className="font-mono text-[1.1rem] text-primary font-[600] uppercase"
                               htmlFor="from"
                             >
                               Arrival
@@ -243,24 +228,24 @@ const TicketComp = ({ showTicket }) => {
                               readOnly
                             />
                           </div>
-                          <div className="mt-[.5rem] relative">
-                            <h1 className="text-[1.7rem] font-semibold text-secondary">
-                              <i>Padma Exclusive</i>
-                            </h1>
-                            <p className="m-0 absolute right-0 font-[550] text-white mt-[-.5rem]">
-                              Nice Tour
-                            </p>
-                          </div>
+                          {/* <div className="mt-[.5rem] relative">
+                        <h1 className="text-[1.7rem] font-semibold text-secondary">
+                          <i>Padma Exclusive</i>
+                        </h1>
+                        <p className="m-0 absolute right-0 font-[550] text-white mt-[-.5rem]">
+                          Nice Tour
+                        </p>
+                      </div> */}
                         </div>
                       </div>
-                      <div className="mt-[.8rem] flex justify-between items-center">
+                      <div className="mt-[.8rem] flex justify-between items-center pl-[.5rem]">
                         <div>
                           <p className="flex items-center">
-                            <span className="text-gray-100 text-[1.1rem] font-bold">
+                            <span className="text-primary text-[1.1rem] font-bold">
                               Cost:
                             </span>{" "}
-                            <span className="text-secondary font-semibold text-[1.3rem] flex items-center">
-                              <TbCurrencyTaka className="text-white text-[1.8rem]" />{" "}
+                            <span className="text-green-400 font-semibold text-[1.8rem] flex items-center">
+                              <TbCurrencyTaka className="text-primary text-[1.8rem]" />{" "}
                               {cost}
                             </span>
                           </p>
@@ -271,10 +256,24 @@ const TicketComp = ({ showTicket }) => {
                 </div>
               </div>
             </div>
+            <div className="modalFooter bg-green-300 p-[.5rem] flex items-center gap-[1rem]">
+              <button
+                onClick={handlePrint}
+                className="bg-green-400 font-bold text-green-800 font-mono text-[1.1rem] flex justify-center items-center gap-[.2rem] rounded-md px-[.8rem] py-[.2rem]"
+              >
+                <BiCloudDownload className="text-[1.3rem]" /> Download
+              </button>
+              <button
+                onClick={() => setShowTicket(false)}
+                className="bg-red-300 font-bold text-red-800 font-mono text-[1.1rem] flex justify-center items-center gap-[.2rem] rounded-md px-[.8rem] py-[.2rem]"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
-        </Modal>
+        </div>
       )}
-    </React.Fragment>
+    </>
   );
 };
 

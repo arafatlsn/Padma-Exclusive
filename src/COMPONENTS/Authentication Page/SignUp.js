@@ -30,7 +30,7 @@ const SignUp = () => {
 
   return (
     <div className="bg-white w-[100%] shadow-md shadow-gray-900">
-      <div className="w-[60%] mx-auto py-[2rem]">
+      <div className="w-[95%] lg:w-[60%] mx-auto py-[2rem]">
         <form onSubmit={submitForm}>
           <div className="flex flex-col gap-[1.5rem]">
             <div className="w-[100%] flex justify-center items-center">
