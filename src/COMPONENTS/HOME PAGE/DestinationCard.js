@@ -3,6 +3,7 @@ import { MdAirlineSeatReclineExtra } from "react-icons/md";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { TicketInfo } from "../../App";
+import './DestinationCard.css'
 
 const DestinationCard = ({ el }) => {
   const { from, to, cost, time, img } = el;
@@ -12,8 +13,8 @@ const DestinationCard = ({ el }) => {
 
   return (
     <div className="shadow-2xl">
-      <div className="w-[370px] h-[280px] flex justify-center relative">
-        <img className="w-[370px] h-[280px] object-cover" src={img} alt="" />
+      <div className="card-container h-[280px] flex justify-center relative">
+        <img className="card-img h-[280px] object-cover" src={img} alt="" />
         <p className="absolute font-semibold left-0 bottom-5 bg-secondary text-primary px-[1rem] py-[.3rem]">
           BDT {cost}/pers
         </p>

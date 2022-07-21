@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
 import DestinationCard from "./DestinationCard";
+import './Destinations.css'
 
 const Destinations = () => {
   const { data: allDestinations, isLoading } = useQuery(
@@ -25,7 +26,7 @@ const Destinations = () => {
       <div className="flex justify-center items-center mb-[3.5rem]">
         <p className="bg-primary h-[.3rem] w-[5rem] m-0"></p>
       </div>
-      <div className="w-[70%] mx-auto grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center gap-[5rem]">
+      <div className="all-destinations lg:w-[70%] mx-auto grid grid-cols-1 lg:grid-cols-3 justify-center justify-items-center">
         {allDestinations.map((el) => (
           <DestinationCard key={el._id} el={el}></DestinationCard>
         ))}

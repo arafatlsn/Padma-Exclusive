@@ -30,7 +30,7 @@ const useAuthentication = () => {
     auth
   );
 
-  return { signInWithGoogle, userGoogle, user, loading,  createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, sendPasswordResetEmail }
+  return { signInWithGoogle, userGoogle, user, loading,  createUserWithEmailAndPassword, errorCreateEmailPass, updateProfile, signInWithEmailAndPassword, errorSignEmailPass, sendPasswordResetEmail }
 };
 
 export default useAuthentication;

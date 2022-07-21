@@ -2,10 +2,6 @@ input:focus {
   border-style: none;
 }
 
-.modal-body-container-ticket {
-  background-image: url("../../public/worldmap.jpg");
-}
-
 .extra-div {
   background-color: rgba(18, 46, 97, 0.5);
 }

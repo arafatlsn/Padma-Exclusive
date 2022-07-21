@@ -1,32 +1,65 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineLock } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import "./SignIn.css";
 import useAuthentication from "./useAuthentication";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TicketInfo } from "../../App";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const { createUserWithEmailAndPassword, updateProfile } = useAuthentication();
+  const {
+    user,
+    createUserWithEmailAndPassword,
+    updateProfile,
+    errorCreateEmailPass,
+  } = useAuthentication();
   const { authentication, setAuthentication } = useContext(TicketInfo);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const [userEmail, setUserEmail] = useState("");
+
   useEffect(() => {
     setAuthentication("Sign-Up");
   }, []);
 
-  const submitForm = async(e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    const userName = e.target.name.value;
-    const userEmail = e.target.email.value;
-    const userPassword = e.target.password.value;
 
-    await createUserWithEmailAndPassword(userEmail, userPassword)
-    await updateProfile({ displayName: userName })
-    e.target.reset()
+    const validateEmail = (email) => {
+      return String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
 
+    const isValid = validateEmail(userEmail);
+
+    if (!isValid) {
+      toast.error("Please Give a Valid Email");
+    } else {
+      const userName = e.target.name.value;
+      const userEmail = e.target.email.value;
+      const userPassword = e.target.password.value;
+
+      await createUserWithEmailAndPassword(userEmail, userPassword);
+      await updateProfile({ displayName: userName });
+      e.target.reset();
+    }
+  };
+
+  if (errorCreateEmailPass?.message) {
+    toast.error(errorCreateEmailPass?.message?.split("/")[1]?.split(")")[0]);
   }
 
+  if (user?.email) {
+    navigate(from, { replace: true });
+  }
 
   return (
     <div className="bg-white w-[100%] shadow-md shadow-gray-900">
@@ -46,6 +79,7 @@ const SignUp = () => {
                 placeholder="Name"
                 name="name"
                 id="name"
+                required
               />
             </div>
             <div className="w-[100%] flex justify-center items-center">
@@ -56,11 +90,13 @@ const SignUp = () => {
                 <MdOutlineEmail className="text-[1.8rem] text-white" />
               </label>
               <input
+                onChange={(e) => setUserEmail(e.target.value)}
                 type="email"
                 className="w-[85%] py-[.82rem] text-[1.4rem] text-gray-800 font-bold font-mono border-primary border-[.13rem]"
                 placeholder="Email"
                 name="email"
                 id="email"
+                required
               />
             </div>
             <div className="w-[100%] flex justify-center items-center">
@@ -76,6 +112,7 @@ const SignUp = () => {
                 placeholder="Password"
                 name="password"
                 id="password"
+                required
               />
             </div>
             <div>

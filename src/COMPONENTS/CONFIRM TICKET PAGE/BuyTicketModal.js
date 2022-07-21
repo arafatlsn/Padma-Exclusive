@@ -54,11 +54,11 @@ const BuyTicketModal = ({
   return (
     <>
       <div className="fixed top-[50%]  z-50 h-0 w-[100%] mx-auto flex justify-center items-center">
-        <div className="animate__animated animate__backInDown">
+        <div className="animate__animated animate__backInDown overflow-y-scroll">
           <div className="modal-title text-green-700 font-bold  bg-green-300 p-[.3rem]">
             <h1 className="flex text-[1.3rem]">Booking Seat</h1>
           </div>
-          <div className="flex">
+          <div className="flex flex-col-reverse lg:flex-row">
             <div className="ticket-img-div">
               <img src={ticketImg} alt="" />
             </div>

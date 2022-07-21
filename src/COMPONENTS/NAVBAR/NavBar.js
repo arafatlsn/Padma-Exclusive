@@ -64,7 +64,7 @@ const NavBar = () => {
           location === "signin" && "bg-[#3256A4] shadow-lg  relative"
         }`}
       >
-        <header className="lg:w-[70%] mx-auto lg:py-[.3rem] flex flex-col lg:flex-row items-center justify-items-start">
+        <header className="lg:w-[70%] mx-auto py-0 lg:py-[.3rem] flex flex-col lg:flex-row items-center justify-items-start">
           <div
             onClick={() => setShowNav(!showNav)}
             className="absolute lg:hidden left-1 top-[1.4rem]"
@@ -97,9 +97,6 @@ const NavBar = () => {
             >
               Destination
             </Link>
-            <Link className="text-xl font-bold mx-[1rem] text-white" to={"/"}>
-              Bookings
-            </Link>
             <button
               onClick={() => {
                 setShowTicket(!showTicket);
@@ -108,9 +105,14 @@ const NavBar = () => {
             >
               Ticket
             </button>
-            <Link className="text-xl font-bold mx-[1rem] text-white" to={"/"}>
+            <a
+              href="https://arafatlsn1.web.app/"
+              target="blank"
+              className="text-xl font-bold mx-[1rem] text-white"
+              to={"/"}
+            >
               About
-            </Link>
+            </a>
             {!user?.email ? (
               <Link
                 className="text-xl font-bold mx-[1rem] text-white"
@@ -165,13 +167,6 @@ const NavBar = () => {
                 >
                   Destination
                 </Link>
-                <Link
-                  onClick={() => setShowNav(!showNav)}
-                  className="text-3xl font-bold mx-[1rem] text-white"
-                  to={"/"}
-                >
-                  Bookings
-                </Link>
                 <button
                   onClick={() => {
                     setShowNav(!showNav);
@@ -181,13 +176,15 @@ const NavBar = () => {
                 >
                   Ticket
                 </button>
-                <Link
+                <a
+                  href="https://arafatlsn1.web.app/"
+                  target="blank"
                   onClick={() => setShowNav(!showNav)}
                   className="text-3xl font-bold mx-[1rem] text-white"
                   to={"/"}
                 >
                   About
-                </Link>
+                </a>
                 {!user?.email ? (
                   <Link
                     onClick={() => setShowNav(!showNav)}

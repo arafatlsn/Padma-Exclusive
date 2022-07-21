@@ -6,15 +6,20 @@ import { FaSignInAlt } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import "./SignIn.css";
 import useAuthentication from "./useAuthentication";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ResetPassConfrmModal from "./ResetPassConfrmModal";
 import toast from "react-hot-toast";
 
 const SingIn = () => {
-  const { signInWithGoogle, signInWithEmailAndPassword, sendPasswordResetEmail } = useAuthentication();
+
+  const { user, signInWithGoogle, signInWithEmailAndPassword, errorSignEmailPass, sendPasswordResetEmail } = useAuthentication();
   const { authentication, setAuthentication } = useContext(TicketInfo);
   const [openConfrmModal, setOpenConfrmModal] = useState(false)
   const [userEmail, setUserEmail] = useState("")
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
     setAuthentication("Sign-In");
@@ -33,6 +38,14 @@ const SingIn = () => {
     await sendPasswordResetEmail(userEmail)
     toast.success("Password reset link sent your email")
     setOpenConfrmModal(false)
+  }
+
+  if(errorSignEmailPass?.message){
+    toast.error(((errorSignEmailPass?.message)?.split('/')[1])?.split(')')[0])
+  }
+
+  if(user?.email){
+    navigate(from, { replace: true });
   }
 
   return (
@@ -55,6 +68,7 @@ const SingIn = () => {
                   placeholder="Email"
                   name="email"
                   id="email"
+                  required
                 />
               </div>
               <div className="w-[100%] flex justify-center items-center">
@@ -70,6 +84,7 @@ const SingIn = () => {
                   placeholder="Password"
                   name="password"
                   id="password"
+                  required
                 />
               </div>
               <div>

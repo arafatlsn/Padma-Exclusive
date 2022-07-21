@@ -94,17 +94,17 @@ const CheckoutForm = ({
           {cost} <span className="text-[1rem]">BDT </span>
         </h1>
       </div>
-      <form className="flex flex-col gap-[.5rem]" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-[.5rem] pb-[1rem] lg:pb-0" onSubmit={handleSubmit}>
         <div>
           <label
-            className="font-mono text-[1.1rem] text-primary uppercase shadow-xl"
+            className="font-mono text-[1.1rem] font-bold text-primary uppercase shadow-xl"
             htmlFor="clientName"
           >
             Your Name
           </label>{" "}
           <br />
           <input
-            className="text-[1.2rem] rounded-sm w-[380px] px-[.5rem] bg-gray-300 border-none font-semibold font-mono text-primary"
+            className="text-[1.2rem] rounded-sm w-[320px] lg:w-[380px] px-[.5rem] bg-gray-300 border-none font-semibold font-mono text-primary"
             name="clientName"
             id="clientName"
             defaultValue={user?.displayName}
@@ -113,7 +113,7 @@ const CheckoutForm = ({
         </div>
         <div>
           <label
-            className="font-mono text-[1.1rem] text-primary uppercase shadow-xl"
+            className="font-mono text-[1.1rem] font-bold text-primary uppercase shadow-xl"
             htmlFor="payment-method"
           >
             Payment Method
@@ -134,13 +134,13 @@ const CheckoutForm = ({
                 },
               },
             }}
-            className="rounded-sm w-[380px] px-[.2rem] py-[.5rem] bg-gray-300"
+            className="rounded-sm w-[320px] lg:w-[380px] px-[.2rem] py-[.5rem] bg-gray-300"
           />
         </div>
         <div className="flex gap-[1rem] items-center">
           <button
             type="submit"
-            className="text-primary bg-green-300 px-[.8rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-green-200 transition-all flex items-center gap-[.2rem] mt-[1rem]"
+            className="text-green-800 bg-green-300 px-[.8rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-green-400 transition-all flex items-center gap-[.2rem] mt-[1rem]"
             disabled={!stripe}
           >
             <SiFampay /> Pay{" "}
@@ -154,7 +154,7 @@ const CheckoutForm = ({
               setShowModal(false);
               setShowPayment(false);
             }}
-            className="text-primary bg-red-300 px-[.8rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-red-200 transition-all flex items-center gap-[.2rem] mt-[1rem]"
+            className="text-red-800 bg-red-300 px-[.8rem] py-[.1rem] rounded-[.3rem] font-bold hover:bg-red-400 transition-all flex items-center gap-[.2rem] mt-[1rem]"
           >
             Cancel
           </button>

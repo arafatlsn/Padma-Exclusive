@@ -228,14 +228,6 @@ const TicketComp = ({ showTicket }) => {
                               readOnly
                             />
                           </div>
-                          {/* <div className="mt-[.5rem] relative">
-                        <h1 className="text-[1.7rem] font-semibold text-secondary">
-                          <i>Padma Exclusive</i>
-                        </h1>
-                        <p className="m-0 absolute right-0 font-[550] text-white mt-[-.5rem]">
-                          Nice Tour
-                        </p>
-                      </div> */}
                         </div>
                       </div>
                       <div className="mt-[.8rem] flex justify-between items-center pl-[.5rem]">
