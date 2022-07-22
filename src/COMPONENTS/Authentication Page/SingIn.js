@@ -4,11 +4,11 @@ import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineLock } from "react-icons/ai";
 import { FaSignInAlt } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import "./SignIn.css";
 import useAuthentication from "./useAuthentication";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ResetPassConfrmModal from "./ResetPassConfrmModal";
 import toast from "react-hot-toast";
+import './SignIn.css'
 
 const SingIn = () => {
 
@@ -57,14 +57,14 @@ const SingIn = () => {
               <div className="w-[100%] flex justify-center items-center">
                 <label
                   htmlFor="email"
-                  className="w-[15%] py-[.8rem] flex justify-center bg-primary"
+                  className="w-[15%] py-[.8rem] flex justify-center bg-gray-500"
                 >
                   <MdOutlineEmail className="text-[1.8rem] text-white" />
                 </label>
                 <input
                   onChange={e => setUserEmail(e.target.value)}
                   type="email"
-                  className="w-[85%] py-[.82rem] text-[1.4rem] text-gray-800 font-bold font-mono border-primary border-[.13rem]"
+                  className="w-[85%] py-[.95rem] focus:py-[.90rem] text-[1.4rem] text-gray-800 bg-gray-400 font-bold font-mono border-none"
                   placeholder="Email"
                   name="email"
                   id="email"
@@ -74,13 +74,13 @@ const SingIn = () => {
               <div className="w-[100%] flex justify-center items-center">
                 <label
                   htmlFor="password"
-                  className="w-[15%] py-[.8rem] flex justify-center bg-primary"
+                  className="w-[15%] py-[.8rem] flex justify-center bg-gray-500"
                 >
                   <AiOutlineLock className="text-[1.8rem] text-white" />
                 </label>
                 <input
                   type="password"
-                  className="w-[85%] py-[.82rem] text-[1.4rem] text-gray-800 font-bold font-mono border-primary border-[.13rem]"
+                  className="w-[85%] py-[.95rem] focus:py-[.88rem] text-[1.4rem] text-gray-800 bg-gray-400 font-bold font-mono border-none"
                   placeholder="Password"
                   name="password"
                   id="password"
