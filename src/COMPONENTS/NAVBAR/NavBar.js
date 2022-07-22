@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { TicketInfo } from "../../App";
-import { HiMenu } from "react-icons/hi";
+import { HiOutlineChevronDown } from "react-icons/hi";
 import { MdClose } from "react-icons/md";
 import { Drawer, Box, Badge } from "@mui/material";
 import useAuthentication from "../Authentication Page/useAuthentication";
@@ -67,15 +67,14 @@ const NavBar = () => {
         <header className="lg:w-[70%] mx-auto py-0 lg:py-[.3rem] flex flex-col lg:flex-row items-center justify-items-start">
           <div
             onClick={() => setShowNav(!showNav)}
-            className="absolute lg:hidden left-1 top-[1.4rem]"
           >
-            <HiMenu className="text-[2.6rem] rounded-sm" />
+            <HiOutlineChevronDown className="bg-gray-700 text-white absolute top-[.6rem] right-[.5rem] text-[2.6rem] rounded-sm border-gray-800 border-[2px]" />
           </div>
           <div className="lg:w-[28%]">
-            <p className="text-[2.5rem] font-bold m-0 text-secondary">
+            <p className="text-[2rem] lg:text-[2.5rem] font-bold m-0 text-secondary">
               <i>Padma</i>
             </p>
-            <p className="text-[1.5rem] font-semibold mt-[-18px] ml-[31px] text-white">
+            <p className="text-[1.3rem] lg:text-[1.5rem] font-semibold mt-[-18px] ml-[31px] text-white">
               Exclusive
             </p>
           </div>
