@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { SiFampay } from "react-icons/si";
 import { TbCurrencyTaka } from "react-icons/tb";
@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useEffect } from "react";
 import useAuthentication from "../Authentication Page/useAuthentication";
+import { TicketInfo } from "../../App";
 
 const CheckoutForm = ({
   cost,
@@ -20,6 +21,8 @@ const CheckoutForm = ({
   const { user } = useAuthentication();
 
   const [secretKey, setSecretKey] = useState("");
+
+  const { setShowLoader } = useContext(TicketInfo);
 
   useEffect(() => {
     const func = async () => {
@@ -39,19 +42,23 @@ const CheckoutForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const clientName = e?.target?.clientName?.value;
+    await setShowLoader(true)
 
     if (!clientName) {
+      setShowLoader(false)
       toast.error("Please give Your Name");
       return;
     }
 
     if (!stripe || !elements) {
+      setShowLoader(false)
       return;
     }
 
     const card = elements.getElement(CardElement);
 
     if (card == null) {
+      setShowLoader(false)
       return;
     }
 
@@ -61,6 +68,7 @@ const CheckoutForm = ({
     });
 
     if (error) {
+      setShowLoader(false)
       toast.error(error?.message);
     } else {
       const { paymentIntent, error } = await stripe.confirmCardPayment(
@@ -75,8 +83,10 @@ const CheckoutForm = ({
         }
       );
       if (error) {
+        setShowLoader(false)
         toast.error(error.message);
       } else {
+        setShowLoader(false)
         toast.success("SUCCEEDED! Thank you");
         bookingTicket(paymentIntent?.id);
         setShowModal(false);

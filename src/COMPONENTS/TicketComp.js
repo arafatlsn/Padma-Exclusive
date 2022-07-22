@@ -17,7 +17,7 @@ const TicketComp = ({ showTicket }) => {
   const [user] = useAuthState(auth);
   const [ticket, setTicket] = useState({});
   const [falseTicket, setFalsyTicket] = useState(false);
-  const { setShowTicket } = useContext(TicketInfo);
+  const { setShowTicket, setShowLoader } = useContext(TicketInfo);
   const componentRef = useRef();
 
   const {
@@ -38,6 +38,7 @@ const TicketComp = ({ showTicket }) => {
   useEffect(() => {
     let refresh = false;
     const func = async () => {
+      await setShowLoader(true)
       const { data } = await axios.get(
         `https://infinite-cliffs-95793.herokuapp.com/ticket?user=${user?.email}`
       );
@@ -75,13 +76,16 @@ const TicketComp = ({ showTicket }) => {
 
         const isAnyTicket = departTime - today;
         if (isAnyTicket > 0) {
+          setShowLoader(false)
           setTicket(data);
           setFalsyTicket(true);
         } else {
+          setShowLoader(false)
           toast.error("You have no upcoming ticket");
           setFalsyTicket(false);
         }
       } else {
+        setShowLoader(false)
         toast.error("You have no ticket");
       }
     };

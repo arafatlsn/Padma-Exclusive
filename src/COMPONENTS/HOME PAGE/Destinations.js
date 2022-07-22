@@ -1,10 +1,15 @@
 import axios from "axios";
 import React from "react";
+import { useContext } from "react";
 import { useQuery } from "react-query";
+import { TicketInfo } from "../../App";
 import DestinationCard from "./DestinationCard";
 import './Destinations.css'
 
 const Destinations = () => {
+
+  const { setShowLoader } = useContext(TicketInfo);
+
   const { data: allDestinations, isLoading } = useQuery(
     "all-destinatins",
     async () => {
@@ -15,8 +20,11 @@ const Destinations = () => {
     }
   );
   if (isLoading) {
+    setShowLoader(true)
     return;
   }
+
+  setShowLoader(false)
 
   return (
     <div className="bg-[#F2F6FF] pt-[5rem] pb-[8rem]">

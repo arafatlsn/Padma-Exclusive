@@ -11,7 +11,8 @@ import SignUp from "./COMPONENTS/Authentication Page/SignUp";
 import RequireAuth from "./COMPONENTS/Authentication Page/RequireAuth";
 import TicketComp from "./COMPONENTS/TicketComp";
 import FooterComp from "./COMPONENTS/Footer/FooterComp";
-import 'animate.css';
+import "animate.css";
+import LoaderComp from "./COMPONENTS/Shared/LoaderComp";
 
 export const TicketInfo = createContext();
 function App() {
@@ -30,7 +31,7 @@ function App() {
 
   const [showTicket, setShowTicket] = useState(false);
   const [falseTicket, setFalsyTicket] = useState(false);
-
+  const [showLoader, setShowLoader] = useState(false);
 
   return (
     <TicketInfo.Provider
@@ -53,12 +54,12 @@ function App() {
         setAuthentication,
         showTicket,
         setShowTicket,
-        
+        setShowLoader,
       }}
     >
       <div style={{ fontFamily: "Josefin Sans" }}>
         <NavBar></NavBar>
-        {showTicket && <TicketComp showTicket={showTicket} ></TicketComp>}
+        {showTicket && <TicketComp showTicket={showTicket}></TicketComp>}
         <Routes>
           <Route path="/" element={<HomePage></HomePage>}></Route>
           <Route
@@ -76,6 +77,9 @@ function App() {
         </Routes>
         <FooterComp></FooterComp>
         <Toaster />
+        {
+          showLoader && <LoaderComp/>
+        }
       </div>
     </TicketInfo.Provider>
   );

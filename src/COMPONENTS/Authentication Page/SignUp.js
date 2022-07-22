@@ -14,9 +14,9 @@ const SignUp = () => {
     user,
     createUserWithEmailAndPassword,
     updateProfile,
-    errorCreateEmailPass,
+    errorCreateEmailPass
   } = useAuthentication();
-  const { authentication, setAuthentication } = useContext(TicketInfo);
+  const { authentication, setAuthentication, setShowLoader } = useContext(TicketInfo);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -26,6 +26,12 @@ const SignUp = () => {
   useEffect(() => {
     setAuthentication("Sign-Up");
   }, []);
+
+  useEffect(() => {
+    if (errorCreateEmailPass?.message) {
+      toast.error(errorCreateEmailPass?.message?.split("/")[1]?.split(")")[0]);
+    }
+  }, [errorCreateEmailPass]);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -47,15 +53,13 @@ const SignUp = () => {
       const userEmail = e.target.email.value;
       const userPassword = e.target.password.value;
 
+      setShowLoader(true)
       await createUserWithEmailAndPassword(userEmail, userPassword);
       await updateProfile({ displayName: userName });
       e.target.reset();
+      setShowLoader(false)
     }
   };
-
-  if (errorCreateEmailPass?.message) {
-    toast.error(errorCreateEmailPass?.message?.split("/")[1]?.split(")")[0]);
-  }
 
   if (user?.email) {
     navigate(from, { replace: true });

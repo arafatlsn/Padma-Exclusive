@@ -1,4 +1,5 @@
 import { useAuthState, useCreateUserWithEmailAndPassword, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import auth from './Firebase.init';
 
 const useAuthentication = () => {
@@ -30,7 +31,7 @@ const useAuthentication = () => {
     auth
   );
 
-  return { signInWithGoogle, userGoogle, user, loading,  createUserWithEmailAndPassword, errorCreateEmailPass, updateProfile, signInWithEmailAndPassword, errorSignEmailPass, sendPasswordResetEmail }
+  return { signInWithGoogle, loadingGoogle, userGoogle, user, loading,  createUserWithEmailAndPassword, errorCreateEmailPass, updateProfile, signInWithEmailAndPassword, errorSignEmailPass, sendPasswordResetEmail }
 };
 
 export default useAuthentication;

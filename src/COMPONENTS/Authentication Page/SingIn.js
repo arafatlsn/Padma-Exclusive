@@ -8,43 +8,52 @@ import useAuthentication from "./useAuthentication";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ResetPassConfrmModal from "./ResetPassConfrmModal";
 import toast from "react-hot-toast";
-import './SignIn.css'
+import "./SignIn.css";
 
 const SingIn = () => {
-
-  const { user, signInWithGoogle, signInWithEmailAndPassword, errorSignEmailPass, sendPasswordResetEmail } = useAuthentication();
-  const { authentication, setAuthentication } = useContext(TicketInfo);
-  const [openConfrmModal, setOpenConfrmModal] = useState(false)
-  const [userEmail, setUserEmail] = useState("")
+  const {
+    user,
+    signInWithGoogle,
+    loadingGoogle,
+    signInWithEmailAndPassword,
+    errorSignEmailPass,
+    sendPasswordResetEmail,
+  } = useAuthentication();
+  const { authentication, setAuthentication, setShowLoader } =
+    useContext(TicketInfo);
+  const [openConfrmModal, setOpenConfrmModal] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     setAuthentication("Sign-In");
   }, []);
 
+  useEffect(() => {
+    if(errorSignEmailPass?.message.length){
+      toast.error(errorSignEmailPass?.message?.split("/")[1]?.split(")")[0]);
+    }
+  }, [errorSignEmailPass])
+
   const submitForm = async (e) => {
     e.preventDefault();
     const userEmail = e.target.email.value;
     const userPassword = e.target.password.value;
-    signInWithEmailAndPassword(userEmail, userPassword);
-
-    e.target.reset();
+    setShowLoader(true);
+    await signInWithEmailAndPassword(userEmail, userPassword);
+    setShowLoader(false);
   };
 
-  const handleResetLink = async() => {
-    await sendPasswordResetEmail(userEmail)
-    toast.success("Password reset link sent your email")
-    setOpenConfrmModal(false)
-  }
+  const handleResetLink = async () => {
+    await sendPasswordResetEmail(userEmail);
+    toast.success("Password reset link sent your email");
+    setOpenConfrmModal(false);
+  };
 
-  if(errorSignEmailPass?.message){
-    toast.error(((errorSignEmailPass?.message)?.split('/')[1])?.split(')')[0])
-  }
-
-  if(user?.email){
+  if (user?.email) {
     navigate(from, { replace: true });
   }
 
@@ -62,7 +71,7 @@ const SingIn = () => {
                   <MdOutlineEmail className="text-[1.8rem] text-white" />
                 </label>
                 <input
-                  onChange={e => setUserEmail(e.target.value)}
+                  onChange={(e) => setUserEmail(e.target.value)}
                   type="email"
                   className="w-[85%] py-[.95rem] focus:py-[.90rem] text-[1.4rem] text-gray-800 bg-gray-400 font-bold font-mono border-none"
                   placeholder="Email"
@@ -102,7 +111,11 @@ const SingIn = () => {
               Sign-In with
             </span>
             <span
-              onClick={() => signInWithGoogle()}
+              onClick={async () => {
+                setShowLoader(true);
+                await signInWithGoogle();
+                setShowLoader(false);
+              }}
               className="text-[1.5rem] bg-secondary px-[.8rem] py-[.3rem] rounded-[.3rem] flex items-center gap-[.3rem] text-green-800 font-semibold cursor-pointer"
             >
               <FcGoogle /> Google
@@ -119,38 +132,38 @@ const SingIn = () => {
               </Link>
             </span>
           </div>
-          <div 
-          onClick={() => {
+          <div
+            onClick={() => {
+              const validateEmail = (email) => {
+                return String(email)
+                  .toLowerCase()
+                  .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                  );
+              };
 
-            const validateEmail = (email) => {
-              return String(email)
-                .toLowerCase()
-                .match(
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                );
-            };
+              const isValid = validateEmail(userEmail);
 
-            const isValid = validateEmail(userEmail)
-            
-            if(!isValid){
-              toast.error("Please give a valid email")
-            }
-            else{
-              setOpenConfrmModal(true)
-            }
-          }}
-          className="mt-[.5rem] flex justify-center">
+              if (!isValid) {
+                toast.error("Please give a valid email");
+              } else {
+                setOpenConfrmModal(true);
+              }
+            }}
+            className="mt-[.5rem] flex justify-center"
+          >
             <span className="font-bold text-primary cursor-pointer">
               Forgot Password?
             </span>
           </div>
         </div>
       </div>
-      {
-        openConfrmModal && <ResetPassConfrmModal setOpenConfrmModal={setOpenConfrmModal}
-        handleResetLink={handleResetLink}
+      {openConfrmModal && (
+        <ResetPassConfrmModal
+          setOpenConfrmModal={setOpenConfrmModal}
+          handleResetLink={handleResetLink}
         />
-      }
+      )}
     </>
   );
 };

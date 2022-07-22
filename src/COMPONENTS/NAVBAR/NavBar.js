@@ -68,16 +68,16 @@ const NavBar = () => {
           <div
             onClick={() => setShowNav(!showNav)}
           >
-            <HiOutlineChevronDown className="bg-gray-700 text-white absolute top-[.6rem] right-[.5rem] text-[2.6rem] rounded-sm border-gray-800 border-[2px]" />
+            <HiOutlineChevronDown className="lg:hidden bg-gray-700 text-white absolute top-[.6rem] right-[.5rem] text-[2.6rem] rounded-md border-gray-800 border-[2px]" />
           </div>
-          <div className="lg:w-[28%]">
+          <Link to={"/"} className="lg:w-[28%]">
             <p className="text-[2rem] lg:text-[2.5rem] font-bold m-0 text-secondary">
               <i>Padma</i>
             </p>
             <p className="text-[1.3rem] lg:text-[1.5rem] font-semibold mt-[-18px] ml-[31px] text-white">
               Exclusive
             </p>
-          </div>
+          </Link>
 
           <div
             id="menuList"
