@@ -1,9 +1,0 @@
-.confirm-page-banner{
-  background: url('../../../public/background2.jpg');
-  background-repeat: no-repeat; 
-  background-size: 100vw 100vh;
-  background-position-y: 40%
-}
-.confirm-page-parent{
-  background-color: rgba(18, 46, 97, .5);
-}
