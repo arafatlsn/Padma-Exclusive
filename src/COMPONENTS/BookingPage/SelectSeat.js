@@ -63,7 +63,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("A1") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("A1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("A1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("A1") === -1 ? (
                   "A1"
@@ -77,7 +77,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("A2") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                }  ${selectedSeats?.indexOf("A2") !== -1 && "bg-yellow-300"}`}
+                }  ${selectedSeats?.indexOf("A2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("A2") === -1 ? (
                   "A2"
@@ -92,7 +92,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("A3") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("A3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("A3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("A3") === -1 ? (
                   "A3"
@@ -106,7 +106,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("A4") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("A4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("A4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("A4") === -1 ? (
                   "A4"
@@ -121,7 +121,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("B1") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("B1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("B1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("B1") === -1 ? (
                   "B1"
@@ -135,7 +135,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("B2") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("B2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("B2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("B2") === -1 ? (
                   "B2"
@@ -150,7 +150,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("B3") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("B3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("B3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("B3") === -1 ? (
                   "B3"
@@ -164,7 +164,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("B4") !== -1
                     ? "bg-blue-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("B4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("B4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("B4") === -1 ? (
                   "B4"
@@ -179,7 +179,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("C1") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("C1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("C1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("C1") === -1 ? (
                   "C1"
@@ -193,7 +193,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("C2") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("C2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("C2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("C2") === -1 ? (
                   "C2"
@@ -208,7 +208,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("C3") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("C3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("C3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("C3") === -1 ? (
                   "C3"
@@ -222,7 +222,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("C4") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("C4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("C4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("C4") === -1 ? (
                   "C4"
@@ -237,7 +237,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("D1") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("D1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("D1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("D1") === -1 ? (
                   "D1"
@@ -251,7 +251,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("D2") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("D2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("D2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("D2") === -1 ? (
                   "D2"
@@ -266,7 +266,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("D3") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("D3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("D3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("D3") === -1 ? (
                   "D3"
@@ -280,7 +280,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("D4") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("D4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("D4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("D4") === -1 ? (
                   "D4"
@@ -295,7 +295,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("E1") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("E1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("E1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("E1") === -1 ? (
                   "E1"
@@ -309,7 +309,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("E2") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("E2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("E2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("E2") === -1 ? (
                   "E2"
@@ -324,7 +324,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("E3") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("E3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("E3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("E3") === -1 ? (
                   "E3"
@@ -338,7 +338,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("E4") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("E4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("E4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("E4") === -1 ? (
                   "E4"
@@ -353,7 +353,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("F1") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("F1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("F1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("F1") === -1 ? (
                   "F1"
@@ -367,7 +367,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("F2") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("F2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("F2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("F2") === -1 ? (
                   "F2"
@@ -382,7 +382,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("F3") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("F3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("F3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("F3") === -1 ? (
                   "F3"
@@ -396,7 +396,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("F4") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("F4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("F4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("F4") === -1 ? (
                   "F4"
@@ -411,7 +411,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("G1") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("G1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("G1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("G1") === -1 ? (
                   "G1"
@@ -425,7 +425,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("G2") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("G2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("G2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("G2") === -1 ? (
                   "G2"
@@ -440,7 +440,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("G3") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("G3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("G3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("G3") === -1 ? (
                   "G3"
@@ -454,7 +454,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("G4") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("G4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("G4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("G4") === -1 ? (
                   "G4"
@@ -469,7 +469,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("H1") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("H1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("H1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("H1") === -1 ? (
                   "H1"
@@ -483,7 +483,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("H2") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("H2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("H2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("H2") === -1 ? (
                   "H2"
@@ -498,7 +498,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("H3") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("H3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("H3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("H3") === -1 ? (
                   "H3"
@@ -512,7 +512,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("H4") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("H4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("H4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("H4") === -1 ? (
                   "H4"
@@ -527,7 +527,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("I1") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("I1") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("I1") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("I1") === -1 ? (
                   "I1"
@@ -541,7 +541,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("I2") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("I2") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("I2") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("I2") === -1 ? (
                   "I2"
@@ -555,7 +555,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("I3") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("I3") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("I3") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("I3") === -1 ? (
                   "I3"
@@ -569,7 +569,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("I4") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("I4") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("I4") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("I4") === -1 ? (
                   "I4"
@@ -583,7 +583,7 @@ const SelectSeat = () => {
                   ticket?.seats?.indexOf("I5") !== -1
                     ? "bg-gray-500"
                     : "bg-red-500"
-                } ${selectedSeats?.indexOf("I5") !== -1 && "bg-yellow-300"}`}
+                } ${selectedSeats?.indexOf("I5") !== -1 && "bg-secondary"}`}
               >
                 {selectedSeats?.indexOf("I5") === -1 ? (
                   "I5"
@@ -619,7 +619,7 @@ const SelectSeat = () => {
               </div>
               <div className="flex items-center gap-[6px]">
                 <div
-                  className={`flex justify-center items-center w-[30px] h-[30px] text-white rounded-[8px] cursor-pointer transition-all bg-yellow-300`}
+                  className={`flex justify-center items-center w-[30px] h-[30px] text-white rounded-[8px] cursor-pointer transition-all bg-secondary`}
                 ></div>
                 <p className="text-[1.1rem] text-blue-800 font-[500]">
                   Selected

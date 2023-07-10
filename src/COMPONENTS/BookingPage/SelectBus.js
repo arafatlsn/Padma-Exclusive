@@ -25,10 +25,9 @@ const timeArr = (time) => {
 
 const SelectBus = () => {
   const [startLocation] = useRecoilState(startLocationState);
-  const [gointoLocation] = useRecoilState(goingtoLocationState);
   const [selectedData] = useRecoilState(selectDateState);
 
-  const { data, isFetching, refetch } = useQuery("tickets", async () => {
+  const { data, isFetching } = useQuery("tickets", async () => {
     const res = await axios.get(
       `http://localhost:5000/api/v1/tickets/get-all-tickets?from=${startLocation}&selectedDate=${selectedData?.toDateString()}`
     );
@@ -37,16 +36,16 @@ const SelectBus = () => {
         el?.destinations?.length && el?.destinations[0]?.journeyStart
       );
       const selectedDate = new Date(selectedData);
-      const nowTime = new Date().getTime()
-      selectedDate.setHours(getTime)
-      selectedDate.setMinutes(0)
-      selectedDate.setSeconds(0)
-      const selectedDateGetTime = selectedDate.getTime()
-      if(selectedDateGetTime > nowTime){
-        return el
-      } 
+      const nowTime = new Date().getTime();
+      selectedDate.setHours(getTime);
+      selectedDate.setMinutes(0);
+      selectedDate.setSeconds(0);
+      const selectedDateGetTime = selectedDate.getTime();
+      if (selectedDateGetTime > nowTime) {
+        return el;
+      }
     });
-    return(filteredResponse);
+    return filteredResponse;
   });
 
   if (isFetching) {
@@ -54,7 +53,7 @@ const SelectBus = () => {
   }
 
   return (
-    <div className="w-[100%] grid justify-items-center grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[3px] px-[10px] py-[15px] border">
+    <div className="w-[100%] grid justify-items-center grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[3px] px-[10px] py-[15px]">
       {data?.map((el) => (
         <TicketCard data={el} />
       ))}

@@ -11,7 +11,7 @@ module.exports = {
       lightBlue: "#1B99E5",
       deepGray: "#393a3c",
       inputBg: "#F3F2F4",
-    }
+    },
   },
   plugins: [require("flowbite/plugin")],
 };
