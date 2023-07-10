@@ -13,7 +13,7 @@ const SuccessPage = () => {
   const { tId } = useParams();
   const { data } = useQuery("ticket", async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/v1/tickets/get-ticket?tId=${tId}`
+      `https://padma-exclusive.onrender.com/api/v1/tickets/get-ticket?tId=${tId}`
     );
     return res?.data;
   });

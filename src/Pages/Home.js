@@ -16,7 +16,7 @@ const Home = () => {
       {/* ///// black filter ///// */}
       <div className="h-[120vh] md:h-screen w-[100%] absolute top-0 z-[-50] bg-[#00000050]"></div>
 
-      <div className="h-screen 2xl:w-[1180px] flex flex-col justify-center mx-auto z-[100] pt-[5rem] px-[20px]  lg:px-[50px] 2xl:px-0">
+      <div className="h-[120vh] 2xl:w-[1180px] flex flex-col justify-center mx-auto z-[100] px-[20px]  lg:px-[50px] 2xl:px-0">
         <BannerTop />
         <BookingForm />
       </div>

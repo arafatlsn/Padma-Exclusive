@@ -53,7 +53,7 @@ const PaymentRight = () => {
   const handleBooking = async () => {
     if (userPhone && isValidPhone) {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/payment/booking",
+        "https://padma-exclusive.onrender.com/api/v1/payment/booking",
         {
           from: startLocation,
           to: gointoLocation,

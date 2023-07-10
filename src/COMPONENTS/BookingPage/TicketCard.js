@@ -28,7 +28,7 @@ const TicketCard = ({ data }) => {
   useEffect(() => {
     const asyncFunc = async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/v1/bookings/get-bookings?sDate=${selectedDate.toDateString()}&bId=${
+        `https://padma-exclusive.onrender.com/api/v1/bookings/get-bookings?sDate=${selectedDate.toDateString()}&bId=${
           data?.busId
         }`
       );

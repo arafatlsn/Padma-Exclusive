@@ -9,6 +9,7 @@ import {
   selectDateState,
   startLocationState,
 } from "../../Atom/booking.atom";
+import Loading from "../Loading";
 
 const timeArr = (time) => {
   const param = time;
@@ -29,7 +30,7 @@ const SelectBus = () => {
 
   const { data, isFetching } = useQuery("tickets", async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/v1/tickets/get-all-tickets?from=${startLocation}&selectedDate=${selectedData?.toDateString()}`
+      `https://padma-exclusive.onrender.com/api/v1/tickets/get-all-tickets?from=${startLocation}&selectedDate=${selectedData?.toDateString()}`
     );
     const filteredResponse = res?.data?.filter((el) => {
       const getTime = timeArr(
@@ -49,7 +50,7 @@ const SelectBus = () => {
   });
 
   if (isFetching) {
-    return <p>loading.....</p>;
+    return <Loading />;
   }
 
   return (
